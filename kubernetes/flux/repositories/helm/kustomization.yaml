@@ -16,5 +16,6 @@ resources:
   - ./stakater.yaml
   - ./piraeus.yaml
   - ./backcube.yaml
+  - ./rook-ceph.yaml
 
 

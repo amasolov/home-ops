@@ -29,7 +29,9 @@ spec:
           enabled: false
       replicated:
         mayastor:
-          enabled: false
+          enabled: true
+    mayastor:
+      enabled: true
     openebs-crds:
       csi:
         volumeSnapshots:
