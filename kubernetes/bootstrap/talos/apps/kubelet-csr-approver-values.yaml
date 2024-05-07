@@ -1,0 +1,3 @@
+---
+providerRegex: ^(ktmb1-g-srv-008.iot.home.alexeym.net)$
+bypassDnsResolution: true
