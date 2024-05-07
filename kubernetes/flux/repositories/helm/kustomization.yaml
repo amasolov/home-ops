@@ -14,3 +14,6 @@ resources:
   - ./postfinance.yaml
   - ./spegel.yaml
   - ./stakater.yaml
+  - ./piraues.yaml
+  - ./backcube.yaml
+  

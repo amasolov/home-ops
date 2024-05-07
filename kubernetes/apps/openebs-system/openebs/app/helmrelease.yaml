@@ -29,13 +29,11 @@ spec:
           enabled: false
       replicated:
         mayastor:
-          enabled: true
+          enabled: false
     openebs-crds:
       csi:
         volumeSnapshots:
           enabled: false
-    mayastor:
-
     localpv-provisioner:
       localpv:
         image:
