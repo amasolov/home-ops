@@ -25,7 +25,7 @@ nodes:
   - hostname: "ktmb1-g-srv-008.iot.home.alexeym.net"
     ipAddress: "192.168.6.4"
     installDisk: "/dev/sdc"
-    talosImageURL: factory.talos.dev/installer/549b679e80c14c87d0383e094c1240505a2e5e54f90cec3d3e170c86b0d7b552
+    talosImageURL: factory.talos.dev/installer/08be0fd5c578f1dcf42cecace37d370f9c63c2c7036d818c4b83c655385b07b8
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -39,6 +39,8 @@ nodes:
             gateway: "192.168.6.1"
         vip:
           ip: "192.168.6.5"
+    patches:
+      - "@./patches/node_ktmb1-g-srv-008.iot.home.alexeym.net.yaml"
 
 patches:
   # Configure containerd
@@ -55,12 +57,6 @@ patches:
               discard_unpacked_layers = false
             [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
               discard_unpacked_layers = false
-
-  - |-
-    machine:
-      kernel:
-        modules:
-          - name: dm-thin-pool
 
   # Disable search domain everywhere
   - |-
@@ -122,6 +118,8 @@ patches:
             options: ["bind", "rshared", "rw"]
 
 
+  # User specified global patches
+  - "@./patches/global.yaml"
 
 controlPlane:
   patches:
@@ -161,4 +159,6 @@ controlPlane:
             allowedRoles: ["os:admin"]
             allowedKubernetesNamespaces: ["system-upgrade"]
 
+    # User specified controlPlane patches
+    - "@./patches/controlPlane.yaml"
 
