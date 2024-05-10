@@ -13,6 +13,4 @@ resources:
   - ./jetstack.yaml
   - ./metrics-server.yaml
   - ./openebs.yaml
-  - ./postfinance.yaml
-  - ./spegel.yaml
   - ./stakater.yaml

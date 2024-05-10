@@ -1,6 +1,7 @@
 - op: add
-  path: /machine/kernel/modules
+  path: /machine/kernel
   value: [
+
    { "name": "dm-thin-pool" },
    { "name": "zfs" }
   ]

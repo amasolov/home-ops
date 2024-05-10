@@ -1,0 +1,9 @@
+---
+kubernetes:
+  children:
+    controllers:
+      hosts:
+        "ktmb1-g-srv-008.iot.home.alexeym.net":
+          ansible_user: "amasolov"
+          ansible_host: "192.168.6.4"
+          ansible_ssh_private_key_file: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDe/hhK6Tx35x5FWaFDugMcAF1UMcwGMRpd0K9vGEwMMhsFUHDUveNv/n4EtJJh3rTs7likBXmUPrGm0paKq1Bfqw2RYNt262gDgdf1hAZqJMdMcv0FLW7eZJsX0z8k8nX9UaFNBT7vUls/rsWlB5gYnH9SxRlQSh640qQV0E8DEETDR4dSnP+y37Kya4w6QCLRlTdXuFpwmcRT82DfQvafHBrZLumbbzvQH1qv8HZhgNB/m4yjAE4tKbyDjxi0Bfh16oJXcmweXtXv4qlJ5vwY75yfu79AZjJmP5BMlAIk+oHw3VLSWkcbKEvTJlJ2z02TRIwSAnRhIf7ANqhdUAdN amasolov@redhat.com"
