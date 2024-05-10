@@ -15,4 +15,7 @@ resources:
   - ./openebs.yaml
   - ./stakater.yaml
   - ./backcube.yaml
-
+  - ./cloudnative-pg.yaml
+  - ./bitnami.yaml
+  
+  

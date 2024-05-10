@@ -1,0 +1,77 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: redis
+spec:
+  interval: 10m0s
+  chart:
+    spec:
+      chart: redis
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: database
+  valuesFrom:
+    - kind: Secret
+      name: redis-secret
+      valuesKey: redis_password
+      targetPath: global.redis.password
+      optional: true
+    - kind: Secret
+      name: redis-secret
+      valuesKey: redis_password
+      targetPath: auth.password
+      optional: true
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    usePassword: true
+    architecture: replication
+    global:
+      storageClass: "openebs-hostpath"
+    auth:
+      enabled: true
+      sentinel: false
+    master:
+      persistence:
+        enabled: false
+        storageClass: "openebs-hostpath"
+        size: 10Gi
+      resources:
+        requests:
+          cpu: 15m
+          memory: 20Mi
+        limits:
+          memory: 100Mi
+    replica:
+      replicaCount: 2
+      persistence:
+        enabled: false
+        storageClass: "openebs-hostpath"
+        size: 1Gi
+      resources:
+        requests:
+          cpu: 15m
+          memory: 20Mi
+        limits:
+          memory: 100Mi
+    sentinel:
+      enabled: true
+      masterSet: redis-master
+      persistence:
+        enabled: false
+        storageClass: "openebs-hostpath"
+        size: 1Gi
+      resources:
+        requests:
+          cpu: 15m
+          memory: 20Mi
+        limits:
+          memory: 100Mi
+
