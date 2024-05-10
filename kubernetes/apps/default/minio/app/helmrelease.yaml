@@ -67,7 +67,7 @@ spec:
                 memory: 2Gi
     defaultPodOptions:
       nodeSelector:
-        "kubernetes.io/hostname": "ktmb1-g-srv-005.iot.home.alexeym.net"
+        "kubernetes.io/hostname": "ktmb1-g-srv-008.iot.home.alexeym.net"
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
