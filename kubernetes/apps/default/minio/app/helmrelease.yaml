@@ -114,7 +114,7 @@ spec:
       config:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
-        storageClass: openebs-hostpath
+        storageClass: openebs-zfspv
         size: 100Gi
         globalMounts:
           - path: /data
