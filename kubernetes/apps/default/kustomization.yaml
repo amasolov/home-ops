@@ -5,10 +5,10 @@ kind: Kustomization
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
-#  - ./smtp-relay/ks.yaml
+  - ./smtp-relay/ks.yaml
   - ./certificates/ks.yaml
-#  - ./authentik/ks.yaml
+  - ./authentik/ks.yaml
   - ./minio/ks.yaml
- # - ./netbox/ks.yaml
+  - ./netbox/ks.yaml
 
 
