@@ -19,6 +19,8 @@ resources:
   - ./bitnami.yaml
   - ./authentik.yaml
   - ./bootc.yaml
+  - ./grafana.yaml
+  
 
 
 
