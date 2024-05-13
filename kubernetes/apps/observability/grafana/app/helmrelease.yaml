@@ -22,7 +22,7 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
+#  dependsOn:
 #    - name: authelia
 #      namespace: default
 #    - name: kube-prometheus-stack
