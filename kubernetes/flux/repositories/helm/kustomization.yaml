@@ -20,6 +20,8 @@ resources:
   - ./authentik.yaml
   - ./bootc.yaml
   - ./grafana.yaml
+  - ./stevenhipwell.yaml
+  
   
 
 
