@@ -72,7 +72,7 @@ data:
       'netbox.custom_pipeline.set_roles'
     )
   custom_pipeline.py: |
-    from django.contrib.auth.models import Group
+    from netbox.authentication import Group
 
     class AuthFailed(Exception):
         pass
