@@ -10,12 +10,12 @@ spec:
   type: LoadBalancer
   ports:
     - name: ldap
-      port: 389
+      port: 9389
       protocol: TCP
-      targetPort: 9389
+      targetPort: 389
     - name: ldap-ssl
-      port: 636
+      port: 9636
       protocol: TCP
-      targetPort: 9636
+      targetPort: 636
   selector:
     goauthentik.io/outpost-name: ktmb1ldap
