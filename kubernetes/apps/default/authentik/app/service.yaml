@@ -12,10 +12,10 @@ spec:
     - name: ldap
       port: 389
       protocol: TCP
-      targetPort: 389
+      targetPort: 9389
     - name: ldap-ssl
       port: 636
       protocol: TCP
-      targetPort: 636
+      targetPort: 9636
   selector:
     goauthentik.io/outpost-name: ktmb1ldap
