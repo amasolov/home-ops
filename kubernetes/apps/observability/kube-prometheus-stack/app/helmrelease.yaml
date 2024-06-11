@@ -28,8 +28,8 @@ spec:
   dependsOn:
     - name: openebs
       namespace: openebs-system
-#    - name: thanos
-#      namespace: observability
+    - name: thanos
+      namespace: observability
   values:
     crds:
       enabled: true
@@ -95,9 +95,9 @@ spec:
         pathType: Prefix
         hosts: ["prometheus.alexeym.net"]
       thanosService:
-        enabled: false
+        enabled: true
       thanosServiceMonitor:
-        enabled: false
+        enabled: true
       prometheusSpec:
         podMetadata:
           annotations:
