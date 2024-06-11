@@ -1,5 +1,7 @@
 ---
-type: REDIS
-config:
-  addr: redis.database.svc.cluster.local:6379
-  db: 1
+#type: REDIS
+#config:
+#  addr: redis.database.svc.cluster.local:6379
+#  db: 1
+#  password:
+type: IN-MEMORY
