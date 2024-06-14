@@ -51,9 +51,12 @@ endpoints:
     group: smart-home
     url: https://homeassistant.alexeym.net
     interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
     client:
       dns-resolver: tcp://192.168.2.43:53
     conditions:
-      - "[STATUS] == 404"
+      - "[STATUS] == 200"
     alerts:
       - type: pushover
