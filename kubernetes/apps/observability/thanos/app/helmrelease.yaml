@@ -69,7 +69,7 @@ spec:
     query:
       replicas: 3
       extraArgs: ["--alert.query-url=https://thanos.alexeym.net"]
-      additionalStores: ["thanos.alexeym.net:10901"]
+      # additionalStores: ["thanos.alexeym.net:10901"]
     queryFrontend:
       enabled: true
       replicas: 3
