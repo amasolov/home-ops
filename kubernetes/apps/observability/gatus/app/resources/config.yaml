@@ -47,3 +47,13 @@ endpoints:
       - "[STATUS] == 404"
     alerts:
       - type: pushover
+  - name: home-assistant
+    group: smart-home
+    url: https://homeassistant.alexeym.net
+    interval: 1m
+    client:
+      dns-resolver: tcp://192.168.2.43:53
+    conditions:
+      - "[STATUS] == 404"
+    alerts:
+      - type: pushover
