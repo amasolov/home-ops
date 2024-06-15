@@ -10,7 +10,7 @@ data:
     endpoints:
       - name: sso
         group: infrastructure-services
-        url: https://authentik-server.default.svc.cluster.local
+        url: http://authentik-server.default.svc.cluster.local
         interval: 1m
         ui:
           hide-url: true
