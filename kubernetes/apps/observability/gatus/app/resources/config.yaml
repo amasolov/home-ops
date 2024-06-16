@@ -75,9 +75,9 @@ endpoints:
     alerts:
       - type: pushover
 
-  - name: ktmb1-t-sw-001 (office switch)
+  - name: ktmb1-g-sw-001 (main switch)
     group: network-devices
-    url: icmp://192.168.1.22
+    url: tcp://192.168.1.21:22
     interval: 1m
     ui:
       hide-url: true
@@ -90,9 +90,9 @@ endpoints:
     alerts:
       - type: pushover
 
-  - name: ktmb1-g-wap-001 (garage wireless access point)
+  - name: ktmb1-t-sw-001 (office switch)
     group: network-devices
-    url: tcp://192.168.1.11:22
+    url: tcp://192.168.1.22:22
     interval: 1m
     ui:
       hide-url: true
