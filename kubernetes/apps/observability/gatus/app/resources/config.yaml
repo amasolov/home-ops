@@ -92,7 +92,22 @@ endpoints:
 
   - name: ktmb1-g-wap-001 (garage wireless access point)
     group: network-devices
-    url: icmp://192.168.1.11
+    url: tcp://192.168.1.11:22
+    interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
+    client:
+      dns-resolver: tcp://192.168.2.43:53
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-wap-001 (garage wireless access point)
+    group: network-devices
+    url: tcp://192.168.1.11:22
     interval: 1m
     ui:
       hide-url: true
