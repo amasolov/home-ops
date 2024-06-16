@@ -60,3 +60,47 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
+  - name: ktmb1-g-rt-001 (main router)
+    group: network-devices
+    url: https://192.168.1.1
+    interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
+    client:
+      dns-resolver: tcp://192.168.2.43:53
+      insecure: true
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-t-sw-001 (office switch)
+    group: network-devices
+    url: icmp://192.168.1.22
+    interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
+    client:
+      dns-resolver: tcp://192.168.2.43:53
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-wap-001 (garage wireless access point)
+    group: network-devices
+    url: icmp://192.168.1.11
+    interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
+    client:
+      dns-resolver: tcp://192.168.2.43:53
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
