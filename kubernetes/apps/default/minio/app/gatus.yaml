@@ -9,7 +9,7 @@ data:
   config.yaml: |
     endpoints:
       - name: s3 storage
-        group: applications
+        group: infrastructure-services
         url: http://minio.default.svc.cluster.local:9001
         interval: 1m
         ui:
