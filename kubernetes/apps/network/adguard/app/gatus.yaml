@@ -19,14 +19,3 @@ data:
           - "[CONNECTED] == true"
         alerts:
           - type: pushover
-      - name: dns replica
-        group: infrastructure-services
-        url: udp://192.168.6.11:53
-        interval: 1m
-        ui:
-          hide-url: true
-          hide-hostname: true
-        conditions:
-          - "[CONNECTED] == true
-        alerts:
-          - type: pushover
