@@ -119,3 +119,18 @@ endpoints:
       - "[CONNECTED] == true"
     alerts:
       - type: pushover
+
+  - name: ktmb1-g-srv-001 (philips hue hub)
+    group: smart-home
+    url: tcp://ktmb1-g-srv-001:80
+    interval: 1m
+    ui:
+      hide-url: true
+      hide-hostname: true
+    client:
+      dns-resolver: tcp://192.168.2.43:53
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
