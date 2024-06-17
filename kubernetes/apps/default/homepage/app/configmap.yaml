@@ -46,6 +46,14 @@ data:
     mode: cluster
   services.yaml: |
     - Network:
+        - DNS:
+            href: https://adguard.alexeym.net/
+            icon: cloudflare-zero-trust.png
+            description: Adguard DNS Status
+            widget:
+              type: adguard
+              username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
+              password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
         - Cloudflared:
             href: https://dash.cloudflare.com/
             icon: cloudflare-zero-trust.png
@@ -75,7 +83,7 @@ data:
               url: https://hass.oxygn.dev
               key: {{HOMEPAGE_VAR_HASS_TOKEN}}
   settings.yaml: |
-    title: Dashboard
+    title: Dashboard | KTMB1
     favicon: https://github.com/walkxcode/dashboard-icons/blob/main/png/heimdall.png
     useEqualHeights: true
     theme: dark
