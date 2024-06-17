@@ -114,19 +114,19 @@ spec:
     - targetPath: controllers.adguard-sync.containers.app.env.ORIGIN_USERNAME
       kind: Secret
       name: adguard-secret
-      valuesKey: USERNAME
+      valuesKey: ORIGIN_USERNAME
     - targetPath: controllers.adguard-sync.containers.app.env.ORIGIN_PASSWORD
       kind: Secret
       name: adguard-secret
-      valuesKey: PASSWORD
+      valuesKey: ORIGIN_PASSWORD
     - targetPath: controllers.adguard-sync.containers.app.env.REPLICA1_USERNAME
       kind: Secret
       name: adguard-secret
-      valuesKey: USERNAME
+      valuesKey: REPLICA1_USERNAME
     - targetPath: controllers.adguard-sync.containers.app.env.REPLICA1_PASSWORD
       kind: Secret
       name: adguard-secret
-      valuesKey: PASSWORD
+      valuesKey: REPLICA1_PASSWORD
     - targetPath: controllers.adguard-sync.containers.app.env.REPLICA1_URL
       kind: Secret
       name: adguard-secret
