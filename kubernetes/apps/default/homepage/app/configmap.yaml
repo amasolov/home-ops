@@ -52,8 +52,10 @@ data:
             description: Adguard DNS Status
             widget:
               type: adguard
+              url: https://adguard.alexeym.net/
               username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
               password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
+              fields: ["queries", "latency"]
         - Cloudflared:
             href: https://dash.cloudflare.com/
             icon: cloudflare-zero-trust.png
@@ -73,6 +75,7 @@ data:
               url: https://unifi.home.alexeym.net
               username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
               password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
+              fields: ["uptime", "wan", "lan", "wlan_devices"]
     - Home:
         - Home-Assistant:
             href: https://hass.oxygn.dev
@@ -80,7 +83,7 @@ data:
             description: Home Automation Software
             widget:
               type: homeassistant
-              url: https://hass.oxygn.dev
+              url: http://homeassistant.local:8123
               key: {{HOMEPAGE_VAR_HASS_TOKEN}}
   settings.yaml: |
     title: Dashboard | KTMB1
