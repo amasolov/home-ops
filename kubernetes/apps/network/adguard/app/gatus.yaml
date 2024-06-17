@@ -10,7 +10,7 @@ data:
     endpoints:
       - name: dns master
         group: infrastructure-services
-        url: udp://192.168.2.43:53
+        url: "udp://192.168.2.43:53"
         interval: 1m
         ui:
           hide-url: true
