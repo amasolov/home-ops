@@ -9,8 +9,8 @@ storage:
 metrics: true
 debug: false
 ui:
-  title: Status | Gatus
-  header: Status
+  title: Status | KTMB1
+  header: KTMB1 Status
 alerting:
   pushover:
     title: Gatus (Kubernetes)
