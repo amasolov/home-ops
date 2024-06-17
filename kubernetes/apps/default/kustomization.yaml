@@ -10,5 +10,6 @@ resources:
   - ./authentik/ks.yaml
   - ./minio/ks.yaml
   - ./netbox/ks.yaml
+  - ./homepage/ks.yaml
 
 
