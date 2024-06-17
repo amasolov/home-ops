@@ -1,0 +1,80 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: adguard
+  namespace: network
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      adguard:
+        replicas: 1
+        strategy: RollingUpdate
+
+        containers:
+          app:
+            image:
+              repository: adguard/adguardhome
+              tag: v0.107.51
+            env:
+              TZ: "Australia/Sydney"
+
+    service:
+      app:
+        controller: adguard
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.6.11
+        ports:
+          http:
+            primary: true
+            port: 3000
+          dns-tcp:
+            port: 53
+            protocol: TCP
+          dns-udp:
+            port: 53
+            protocol: UDP
+
+    persistence:
+      data:
+        existingClaim: adguard-data
+        globalMounts:
+          - path: /opt/adguardhome/data
+      conf:
+        existingClaim: adguard-conf
+        globalMounts:
+          - path: /opt/adguardhome/conf
+
+    ingress:
+      app:
+        className: "internal"
+        hosts:
+          - host: &host adguard-replica.alexeym.net
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *host
