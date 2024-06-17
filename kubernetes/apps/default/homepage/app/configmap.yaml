@@ -162,6 +162,6 @@ data:
           dateStyle: short
           hourCycle: h23
     - unifi_console:
-        url: https://unifi.oxygn.dev
+        url: https://unifi.home.alexeym.net
         username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
         password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
