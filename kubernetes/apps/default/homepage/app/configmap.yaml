@@ -46,7 +46,7 @@ data:
     mode: cluster
   services.yaml: |
     - Network:
-        - DNS:
+        - DNS (master):
             href: https://adguard.alexeym.net/
             icon: cloudflare-zero-trust.png
             description: Adguard DNS Status
@@ -56,6 +56,17 @@ data:
               username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
               password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
               fields: ["queries", "latency"]
+        - DNS (replica):
+            href: https://adguard-replica.alexeym.net/
+            icon: cloudflare-zero-trust.png
+            description: Adguard DNS Status
+            widget:
+              type: adguard
+              url: https://adguard-replica.alexeym.net/
+              username: {{HOMEPAGE_VAR_ADGUARD_REPLICA_USERNAME}}
+              password: {{HOMEPAGE_VAR_ADGUARD_REPLICA_PASSWORD}}
+              fields: ["queries", "latency"]
+
         - Cloudflared:
             href: https://dash.cloudflare.com/
             icon: cloudflare-zero-trust.png
@@ -92,6 +103,7 @@ data:
     theme: dark
     color: slate
     headerStyle: clean
+    hideVersion: true
     quicklaunch:
       searchDescriptions: true
       hideInternetSearch: true
