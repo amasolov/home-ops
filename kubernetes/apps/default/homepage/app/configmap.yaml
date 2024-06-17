@@ -94,7 +94,7 @@ data:
               fields: ["uptime", "wan", "lan", "wlan_devices"]
     - Home:
         - Home-Assistant:
-            href: https://hass.oxygn.dev
+            href: https://homeassistant.alexeym.net
             icon: home-assistant.png
             description: Home Automation Software
             widget:
