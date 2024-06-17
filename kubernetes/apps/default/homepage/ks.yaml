@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: external-secrets-stores
+    - name: external-secrets-aws-ssm
   path: ./kubernetes/apps/default/homepage/app
   prune: true
   sourceRef:
