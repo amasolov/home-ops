@@ -99,7 +99,7 @@ data:
             description: Home Automation Software
             widget:
               type: homeassistant
-              url: http://homeassistant.local:8123
+              url: https://homeassistant.alexeym.net
               key: {{HOMEPAGE_VAR_HASS_TOKEN}}
   settings.yaml: |
     title: Dashboard | KTMB1
