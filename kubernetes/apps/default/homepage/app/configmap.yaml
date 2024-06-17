@@ -66,7 +66,12 @@ data:
               username: {{HOMEPAGE_VAR_ADGUARD_REPLICA_USERNAME}}
               password: {{HOMEPAGE_VAR_ADGUARD_REPLICA_PASSWORD}}
               fields: ["queries", "latency"]
-
+        - Status:
+            href: https://status.alexeym.net
+            description: KTMB1 status
+            widget:
+              type: gatus
+              url: https://status.alexeym.net
         - Cloudflared:
             href: https://dash.cloudflare.com/
             icon: cloudflare-zero-trust.png
