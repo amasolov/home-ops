@@ -95,7 +95,7 @@ spec:
         name: bjw-s
         namespace: flux-system
       interval: 5m
-  targetNamespace: adguard
+  targetNamespace: network
   install:
     createNamespace: true
     remediation:
