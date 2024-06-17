@@ -78,3 +78,83 @@ spec:
         tls:
           - hosts:
               - *host
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &name adguard-sync
+  namespace: network
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+  targetNamespace: adguard
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  dependsOn:
+    - name: adguard
+      namespace: adguard
+  valuesFrom:
+    - targetPath: controllers.adguard-sync.containers.app.env.ORIGIN_URL
+      kind: Secret
+      name: adguard-secret
+      valuesKey: ORIGIN_URL
+    - targetPath: controllers.adguard-sync.containers.app.env.ORIGIN_USERNAME
+      kind: Secret
+      name: adguard-secret
+      valuesKey: USERNAME
+    - targetPath: controllers.adguard-sync.containers.app.env.ORIGIN_PASSWORD
+      kind: Secret
+      name: adguard-secret
+      valuesKey: PASSWORD
+    - targetPath: controllers.adguard-sync.containers.app.env.REPLICA1_USERNAME
+      kind: Secret
+      name: adguard-secret
+      valuesKey: USERNAME
+    - targetPath: controllers.adguard-sync.containers.app.env.REPLICA1_PASSWORD
+      kind: Secret
+      name: adguard-secret
+      valuesKey: PASSWORD
+    - targetPath: controllers.adguard-sync.containers.app.env.REPLICA1_URL
+      kind: Secret
+      name: adguard-secret
+      valuesKey: REPLICA1_URL
+  values:
+    fullnameOverride: *name
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
+    controllers:
+      adguard-sync:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/bakito/adguardhome-sync
+              tag: v0.6.11
+            args: ["run"]
+            env:
+              TZ: "Australia/Sydney"
+              API_PORT: '0'
+              CRON: '*/5 * * * *'
+            resources:
+              requests:
+                cpu: 50m
+                memory: 20Mi
+              limits:
+                cpu: 100m
+                memory: 50Mi
