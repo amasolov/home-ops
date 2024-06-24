@@ -11,5 +11,7 @@ resources:
   - ./minio/ks.yaml
   - ./netbox/ks.yaml
   - ./homepage/ks.yaml
+  - ./meshcentral/ks.yaml
+
 
 
