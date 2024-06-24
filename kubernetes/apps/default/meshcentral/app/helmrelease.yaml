@@ -54,7 +54,7 @@ spec:
     persistence:
       config:
         type: secret
-        name: meshcentral-config
+        name: meshcentral-secret
         advancedMounts:
           meshcentral:
             app:
