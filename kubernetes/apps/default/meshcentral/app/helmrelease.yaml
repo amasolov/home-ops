@@ -41,7 +41,7 @@ spec:
             port: ${PORT}
     ingress:
       app:
-        className: ingress
+        className: internal
         hosts:
           - host: &host ${HOSTNAME}
             paths:
