@@ -6,6 +6,7 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./pvc.yaml
+  - ./scheduledbackup.yaml
 configMapGenerator:
   - name: meshcentral-config-tpl
     files:

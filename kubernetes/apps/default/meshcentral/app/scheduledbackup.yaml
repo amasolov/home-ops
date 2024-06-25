@@ -2,17 +2,17 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: minio-backup
+  name: meshcentral-backup
 spec:
   # The PVC to be backed up
-  sourcePVC: minio-config
+  sourcePVC: meshcentral-data
   trigger:
-    manual: volsync-minio-1
+    manual: volsync-meshcentral-1
   restic:
     # Prune the repository (repack to free space) every 2 weeks
     pruneIntervalDays: 14
     # Name of the Secret with the connection information
-    repository: minio-restic-config
+    repository: meshcentral-secret
     # Retention policy for backups
     retain:
       hourly: 6
