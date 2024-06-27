@@ -10,11 +10,8 @@ data:
     endpoints:
       - name: sso
         group: infrastructure-services
-        url: http://authentik-server.default.svc.cluster.local
+        url: https://sso.alexeym.net
         interval: 1m
-        ui:
-          hide-url: true
-          hide-hostname: true
         conditions:
           - "[STATUS] == 200"
         alerts:

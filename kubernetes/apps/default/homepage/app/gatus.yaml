@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: minio-gatus-ep
+  name: homepage-gatus-ep
   labels:
     gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:
-      - name: s3 storage
-        group: infrastructure-services
-        url: https://s3.alexeym.net
+      - name: sso
+        group: applications
+        url: https://dashboard.alexeym.net
         interval: 1m
         conditions:
           - "[STATUS] == 200"

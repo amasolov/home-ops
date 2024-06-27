@@ -10,11 +10,8 @@ data:
     endpoints:
       - name: netbox
         group: applications
-        url: http://netbox.default.svc.cluster.local
+        url: https://netbox.alexeym.net
         interval: 1m
-        ui:
-          hide-url: true
-          hide-hostname: true
         conditions:
           - "[STATUS] == 200"
         alerts:
