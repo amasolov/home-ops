@@ -27,14 +27,6 @@ connectivity:
     target: 1.1.1.1:53
     interval: 1m
 endpoints:
-  - name: status
-    group: external
-    url: http://status.alexeym.net
-    interval: 1m
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: pushover
   - name: flux-webhook
     group: external
     url: https://flux-webhook.alexeym.net
@@ -49,15 +41,14 @@ endpoints:
     group: smart-home
     url: https://homeassistant.alexeym.net
     interval: 1m
-    client:
-      dns-resolver: tcp://192.168.2.43:53
     conditions:
       - "[STATUS] == 200"
     alerts:
       - type: pushover
+
   - name: ktmb1-g-rt-001 (main router)
     group: network-devices
-    url: https://192.168.1.1
+    url: https://ktmb1-g-rt-001.infrastructure.home.alexeym.net
     interval: 1m
     client:
       dns-resolver: tcp://192.168.2.43:53
@@ -69,10 +60,9 @@ endpoints:
 
   - name: ktmb1-g-sw-001 (main switch)
     group: network-devices
-    url: tcp://192.168.1.21:22
+    url: tcp://ktmb1-g-sw-001.infrastructure.home.alexeym.net:22
     interval: 1m
     client:
-      dns-resolver: tcp://192.168.2.43:53
       insecure: true
     conditions:
       - "[CONNECTED] == true"
@@ -81,10 +71,9 @@ endpoints:
 
   - name: ktmb1-t-sw-001 (office switch)
     group: network-devices
-    url: tcp://192.168.1.22:22
+    url: tcp://ktmb1-t-sw-001.infrastructure.home.alexeym.net:22
     interval: 1m
     client:
-      dns-resolver: tcp://192.168.2.43:53
       insecure: true
     conditions:
       - "[CONNECTED] == true"
@@ -93,10 +82,9 @@ endpoints:
 
   - name: ktmb1-g-wap-001 (garage wireless access point)
     group: network-devices
-    url: tcp://192.168.1.11:22
+    url: tcp://ktmb1-g-wap-001.infrastructure.home.alexeym.net:22
     interval: 1m
     client:
-      dns-resolver: tcp://192.168.2.43:53
       insecure: true
     conditions:
       - "[CONNECTED] == true"
@@ -105,12 +93,20 @@ endpoints:
 
   - name: ktmb1-g-srv-001 (philips hue hub)
     group: smart-home
-    url: tcp://ktmb1-g-srv-001:80
+    url: tcp://ktmb1-g-srv-001.iot.home.alexeym.net:80
     interval: 1m
     client:
-      dns-resolver: tcp://192.168.2.43:53
       insecure: true
     conditions:
       - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: gatus
+    group: applications
+    url: http://status.alexeym.net
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
     alerts:
       - type: pushover
