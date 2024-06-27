@@ -10,7 +10,7 @@ data:
     endpoints:
       - name: s3 storage
         group: infrastructure-services
-        url: https://s3.alexeym.net
+        url: https://minio.alexeym.net
         interval: 1m
         conditions:
           - "[STATUS] == 200"
