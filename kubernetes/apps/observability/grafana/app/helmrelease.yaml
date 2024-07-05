@@ -22,13 +22,11 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-#  dependsOn:
-#    - name: authelia
-#      namespace: default
-#    - name: kube-prometheus-stack
-#      namespace: observability
-#    - name: loki
-#      namespace: observability
+  dependsOn:
+    - name: authentik
+      namespace: default
+    - name: kube-prometheus-stack
+      namespace: observability
   values:
     extraInitContainers:
       - name: 01-init-db
@@ -45,7 +43,7 @@ spec:
       GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
       GF_EXPLORE_ENABLED: true
       GF_FEATURE_TOGGLES_ENABLE: publicDashboards
-      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel,natel-plotly-panel
       GF_SECURITY_ANGULAR_SUPPORT_ENABLED: true
       GF_SECURITY_COOKIE_SAMESITE: grafana
       GF_SERVER_ROOT_URL: https://grafana.alexeym.net
