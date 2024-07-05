@@ -10,5 +10,7 @@ resources:
   - ./kube-prometheus-stack/ks.yaml
   - ./thanos/ks.yaml
   - ./gatus/ks.yaml
+  - ./teslamate/ks.yaml
+
 
 
