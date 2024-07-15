@@ -22,6 +22,8 @@ resources:
   - ./grafana.yaml
   - ./stevehipwell.yaml
   - ./prometheus-community.yaml
+  - ./awx.yaml
+
 
 
 
