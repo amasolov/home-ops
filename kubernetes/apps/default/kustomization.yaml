@@ -12,6 +12,7 @@ resources:
   - ./netbox/ks.yaml
   - ./homepage/ks.yaml
   - ./meshcentral/ks.yaml
+  - ./pgadmin/ks.yaml
 
 
 
