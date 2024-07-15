@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: awx-gatus-ep
+  name: pgadmin-gatus-ep
   labels:
     gatus.io/enabled: "true"
 data:
   config.yaml: |
     endpoints:
-      - name: awx
+      - name: pgadmin
         group: applications
-        url: https://awx.alexeym.net
+        url: https://pgadmin.alexeym.net
         interval: 1m
         conditions:
           - "[STATUS] == 200"
