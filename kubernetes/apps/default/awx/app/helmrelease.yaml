@@ -7,7 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  targetNamespace: awx-operator
   releaseName: *app
   chart:
     spec:
