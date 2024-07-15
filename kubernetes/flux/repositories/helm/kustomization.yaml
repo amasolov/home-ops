@@ -23,6 +23,7 @@ resources:
   - ./stevehipwell.yaml
   - ./prometheus-community.yaml
   - ./awx.yaml
+  - ./dysnix.yaml
 
 
 
