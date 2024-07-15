@@ -40,6 +40,7 @@ spec:
           ingress_tls_secret: alexeym-net-production-tls
           ingress_hosts:
               - hostname: "awx.${SECRET_DOMAIN}"
+                tls: alexeym-net-production-tls
           ee_images:
             - name: personal-awx-ee
               image: ghcr.io/davralin/awx-ee:awx
