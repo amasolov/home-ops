@@ -36,7 +36,8 @@ spec:
           postgres_configuration_secret: awx-secret
           ingress_class_name: internal
           ingress_type: ingress
-          hostname: "awx.${SECRET_DOMAIN}"
+          ingress_hosts:
+              - hostname: "awx.${SECRET_DOMAIN}"
           ee_images:
             - name: personal-awx-ee
               image: ghcr.io/davralin/awx-ee:awx
