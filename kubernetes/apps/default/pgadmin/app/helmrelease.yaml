@@ -63,7 +63,7 @@ spec:
     ingress:
       app:
         enabled: true
-        className: nginx
+        className: internal
         annotations:
           hajimari.io/icon: mdi:database
         hosts:
@@ -79,6 +79,6 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: *app
+        existingClaim: pgadmin-data
         globalMounts:
           - path: /var/lib/pgadmin
