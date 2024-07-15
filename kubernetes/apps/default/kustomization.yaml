@@ -13,6 +13,7 @@ resources:
   - ./homepage/ks.yaml
   - ./meshcentral/ks.yaml
   - ./pgadmin/ks.yaml
+  - ./awx/ks.yaml
 
 
 
