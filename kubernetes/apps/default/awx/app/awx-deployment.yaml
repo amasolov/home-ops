@@ -31,7 +31,7 @@ spec:
         kind: AWX
         metadata:
           name: awx
-          namespace: awx
+          namespace: default
         spec:
           postgres_configuration_secret: awx-secret
           ingress_class_name: internal
