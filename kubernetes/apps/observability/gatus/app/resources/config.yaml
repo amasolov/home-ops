@@ -69,6 +69,17 @@ endpoints:
     alerts:
       - type: pushover
 
+  - name: ktmb1-g-sw-002 (CCTV switch)
+    group: network-devices
+    url: tcp://ktmb1-g-sw-002.infrastructure.home.alexeym.net:22
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
   - name: ktmb1-t-sw-001 (office switch)
     group: network-devices
     url: tcp://ktmb1-t-sw-001.infrastructure.home.alexeym.net:22
@@ -90,6 +101,29 @@ endpoints:
       - "[CONNECTED] == true"
     alerts:
       - type: pushover
+
+  - name: ktmb1-u-wap-001 (upstairs wireless access point)
+    group: network-devices
+    url: tcp://ktmb1-u-wap-001.infrastructure.home.alexeym.net:22
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-t-wap-001 (top floor wireless access point)
+    group: network-devices
+    url: tcp://ktmb1-t-wap-001.infrastructure.home.alexeym.net:22
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
 
   - name: ktmb1-g-srv-001 (philips hue hub)
     group: smart-home
