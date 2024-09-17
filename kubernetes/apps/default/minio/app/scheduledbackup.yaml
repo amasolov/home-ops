@@ -26,4 +26,6 @@ spec:
     # The StorageClass to use when creating the PiT copy (same as source PVC if omitted)
     storageClassName: openebs-zfspv
     volumeSnapshotClassName: zfspv-snapclass
+    unlock: "180920240952"
+
     # The VSC to use if the copy method is Snapshot (default if omitted)
