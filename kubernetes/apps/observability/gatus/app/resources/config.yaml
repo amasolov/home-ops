@@ -124,6 +124,16 @@ endpoints:
     alerts:
       - type: pushover
 
+  - name: ktmb1-g-ups-002 (automatic power transfer switch)
+    group: network-devices
+    url: tcp://ktmb1-g-ups-002.infrastructure.home.alexeym.net:23
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
 
   - name: ktmb1-g-srv-001 (philips hue hub)
     group: smart-home
