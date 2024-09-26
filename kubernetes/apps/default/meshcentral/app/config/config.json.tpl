@@ -12,6 +12,7 @@
     "redirPort": 80,
     "_redirAliasPort": 80,
     "AgentPong": 300,
+    "ssh": true,
     "TLSOffload": ${TLS_OFFLOAD},
     "SelfUpdate": false,
     "AllowFraming": false,
