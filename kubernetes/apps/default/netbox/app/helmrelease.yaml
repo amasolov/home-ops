@@ -83,7 +83,7 @@ spec:
   values:
     image:
       repository: ghcr.io/netbox-community/netbox
-      tag: v4.1.1
+      tag: v4.1.2
     admins:
       - ["admin", "${SECRET_ACME_EMAIL}"]
     logging:
