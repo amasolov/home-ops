@@ -51,7 +51,7 @@ endpoints:
     url: https://ktmb1-g-rt-001.infrastructure.home.alexeym.net
     interval: 1m
     client:
-      dns-resolver: tcp://192.168.2.43:53
+      dns-resolver: tcp://192.168.1.1:53
       insecure: true
     conditions:
       - "[STATUS] == 200"
