@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   type: ExternalName
-  externalName: homeassistant.alexeym.net
+  externalName: homeassistant.local
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -14,7 +14,7 @@ metadata:
   name: homeassistant-external
   namespace: default
 spec:
-  ingressClass: internal
+  ingressClassBane: internal
   rules:
   - host: homeassistant.alexeym.net
     http:
@@ -26,3 +26,6 @@ spec:
               number: 443
         path: /
         pathType: Prefix
+  tls:
+  - hosts:
+    - homeassistant.alexeym.net
