@@ -23,7 +23,7 @@ spec:
           service:
             name: homeassistant-external
             port:
-              number: 443
+              number: 8123
         path: /
         pathType: Prefix
   tls:
