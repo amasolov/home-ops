@@ -14,7 +14,7 @@ metadata:
   name: homeassistant-external
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/server-snippets: |
+    nginx.ingress.kubernetes.io/server-snippet: |
       # Increase buffer size for large headers
       # This is needed only if you get 'upstream sent too big header while reading response
       # header from upstream' error when trying to access an application protected by goauthentik
