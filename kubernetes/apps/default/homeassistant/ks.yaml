@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: homeassistant-external
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: homeassistant.alexeym.net
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: internal
+  name: homeassistant-external
+  namespace: default
+spec:
+  rules:
+  - host: homeassistant.alexeym.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: homeassistant-external
+            port:
+              number: 443
+        path: /
+        pathType: Prefix

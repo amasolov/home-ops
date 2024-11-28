@@ -14,6 +14,7 @@ resources:
   - ./meshcentral/ks.yaml
   - ./pgadmin/ks.yaml
   - ./awx/ks.yaml
+  - ./homeassistant/ks.yaml
 
 
 
