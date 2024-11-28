@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   type: ExternalName
-  externalName: homeassistant.local
+  externalName: ktmb1-g-srv-002.iot.home.alexeym.net
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -14,7 +14,7 @@ metadata:
   name: homeassistant-external
   namespace: default
 spec:
-  ingressClassBane: internal
+  ingressClassName: internal
   rules:
   - host: homeassistant.alexeym.net
     http:
