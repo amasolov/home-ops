@@ -62,9 +62,9 @@ spec:
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 100m
+                cpu: 500m
               limits:
-                memory: 2Gi
+                memory: 3Gi
     defaultPodOptions:
       nodeSelector:
         "kubernetes.io/hostname": "ktmb1-g-srv-008.iot.home.alexeym.net"
