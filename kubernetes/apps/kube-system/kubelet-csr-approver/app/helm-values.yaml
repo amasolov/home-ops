@@ -1,0 +1,3 @@
+---
+providerRegex: ^(ktmb1-g-srv-008|ktmb1-g-srv-009|ktmb1-g-srv-010)$
+bypassDnsResolution: true
