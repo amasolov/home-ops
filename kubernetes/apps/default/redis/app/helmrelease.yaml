@@ -18,12 +18,10 @@ spec:
       name: redis-secret
       valuesKey: redis_password
       targetPath: global.redis.password
-      optional: true
     - kind: Secret
       name: redis-secret
       valuesKey: redis_password
       targetPath: auth.password
-      optional: true
   maxHistory: 2
   install:
     createNamespace: true
