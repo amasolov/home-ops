@@ -13,6 +13,17 @@ spec:
         kind: HelmRepository
         name: bitnami-charts
         namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: redis-secret
+      valuesKey: redis_password
+      targetPath: global.redis.password
+      optional: true
+    - kind: Secret
+      name: redis-secret
+      valuesKey: redis_password
+      targetPath: auth.password
+      optional: true
   maxHistory: 2
   install:
     createNamespace: true
@@ -26,7 +37,7 @@ spec:
     keepHistory: false
   values:
     auth:
-      enabled: false
+      enabled: true
       sentinel: false
     master:
       persistence:
