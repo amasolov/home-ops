@@ -24,7 +24,8 @@ resources:
   - ./emqx.yaml
   - ./angelnu.yaml
   - ./bootc.yaml
-  
+  - ./bitnami-charts.yaml
+
 
 
 
