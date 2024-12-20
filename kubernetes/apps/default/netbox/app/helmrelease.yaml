@@ -154,6 +154,8 @@ spec:
     ingress:
       enabled: true
       className: internal
+      annotations:
+        external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
       hosts:
         - host: &host "netbox.${SECRET_DOMAIN}"
           paths:
