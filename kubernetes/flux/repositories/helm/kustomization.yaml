@@ -23,7 +23,7 @@ resources:
   - ./grafana.yaml
   - ./emqx.yaml
   - ./angelnu.yaml
-  - ./bootc.yaml
+  - ./netbox.yaml
   - ./bitnami-charts.yaml
 
 
