@@ -120,13 +120,13 @@ spec:
       sentinel: false
     tasksRedis:
       sentinels:
-        - redis.database.svc.cluster.local:26379
+        - redis.default.svc.cluster.local:26379
       sentinelService: "redis-master"
       existingSecretName: "netbox-secret"
       existingSecretKey: redis_password
     cachingRedis:
       sentinels:
-        - redis.database.svc.cluster.local:26379
+        - redis.default.svc.cluster.local:26379
       sentinelService: "redis-master"
       existingSecretName: "netbox-secret"
       existingSecretKey: redis_password
