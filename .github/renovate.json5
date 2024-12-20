@@ -7,7 +7,7 @@
     ":dependencyDashboard",
     ":semanticCommits",
     ":automergeBranch",
-    :timezone(Australia/Sydney)",
+    ":timezone(Australia/Sydney)",
     "github>amasolov/home-ops//.github/renovate/autoMerge.json5"
   ],
   dependencyDashboard: true,
