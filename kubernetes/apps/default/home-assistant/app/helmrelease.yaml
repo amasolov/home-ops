@@ -103,6 +103,10 @@ spec:
                 service:
                   identifier: app
                   port: http
+        tls:
+          - hosts:
+            - homeassistant.ktmb1.net
+            secretName: "${SECRET_DOMAIN/./-}-production-tls"
       code-server:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
@@ -114,6 +118,11 @@ spec:
                 service:
                   identifier: app
                   port: code-server
+        tls:
+          - hosts:
+            - homeassistant-code.ktmb1.net
+            secretName: "${SECRET_DOMAIN/./-}-production-tls"
+
     persistence:
       config:
         existingClaim: home-assistant
