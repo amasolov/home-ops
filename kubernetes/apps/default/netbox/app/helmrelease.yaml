@@ -101,8 +101,17 @@ spec:
       enabled: true
       backend: social_core.backends.open_id_connect.OpenIdConnectAuth
       autoCreateUser: false
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/instance: netbox
+                app.kubernetes.io/name: netbox
+                app.kubernetes.io/component: netbox
+            topologyKey: kubernetes.io/hostname
     loginRequired: true
-    timeZone: ${TIMEZONE}
+    timeZone: "Australia/Sydney"
     dateFormat: "j. F, Y"
     shortDateFormat: "j.m.Y"
     timeFormat: "G:i"
@@ -117,7 +126,7 @@ spec:
     redis:
       enabled: false
     auth:
-      sentinel: false
+      sentinel: true
     tasksRedis:
       sentinels:
         - redis.default.svc.cluster.local:26379
