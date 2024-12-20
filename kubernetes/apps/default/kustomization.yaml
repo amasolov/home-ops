@@ -9,5 +9,5 @@ resources:
   - ./redis/ks.yaml
   - ./netbox/ks.yaml
 #  - ./atuin/ks.yaml
-#  - ./home-assistant/ks.yaml
+  - ./home-assistant/ks.yaml
 #  - ./smtp-relay/ks.yaml
