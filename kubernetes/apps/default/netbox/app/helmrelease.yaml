@@ -149,7 +149,7 @@ spec:
     email:
       server: smtp-relay.default.svc.cluster.local
       port: 25
-      from: netbox@${SECRET_DOMAIN}
+      from: netbox@ktmb1.net
     persistence:
       enabled: false
     reportsPersistence:
