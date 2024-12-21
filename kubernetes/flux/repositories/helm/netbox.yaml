@@ -7,6 +7,5 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  type: oci
-  url: oci://ghcr.io/netbox-community/netbox-chart/netbox
+  url: https://charts.netbox.oss.netboxlabs.com/
 
