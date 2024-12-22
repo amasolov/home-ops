@@ -26,11 +26,12 @@ nodes:
   - hostname: "ktmb1-g-srv-008"
     ipAddress: "192.168.8.2"
     installDisk: "/dev/sdb"
-    talosImageURL: factory.talos.dev/installer/f640f8bd3588244df5fce68abb56a7326029113aee4d21fa915e2a2dbcf06f5e
+    talosImageURL: factory.talos.dev/installer/6905bc709e5947573a4ec2d11723b58882936d3d0e15c708f7d78f0c689684a5
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "54:bf:64:7a:dc:4d"
+          physical: true
         dhcp: false
         addresses:
           - "192.168.8.2/24"
@@ -43,11 +44,12 @@ nodes:
   - hostname: "ktmb1-g-srv-009"
     ipAddress: "192.168.8.3"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/f640f8bd3588244df5fce68abb56a7326029113aee4d21fa915e2a2dbcf06f5e
+    talosImageURL: factory.talos.dev/installer/6905bc709e5947573a4ec2d11723b58882936d3d0e15c708f7d78f0c689684a5
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "14:b3:1f:29:c0:08"
+          physical: true
         dhcp: false
         addresses:
           - "192.168.8.3/24"
@@ -60,11 +62,12 @@ nodes:
   - hostname: "ktmb1-g-srv-010"
     ipAddress: "192.168.8.4"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/f640f8bd3588244df5fce68abb56a7326029113aee4d21fa915e2a2dbcf06f5e
+    talosImageURL: factory.talos.dev/installer/6905bc709e5947573a4ec2d11723b58882936d3d0e15c708f7d78f0c689684a5
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "14:b3:1f:29:c3:d7"
+          physical: true
         dhcp: false
         addresses:
           - "192.168.8.4/24"
@@ -82,6 +85,7 @@ patches:
   - "@./patches/global/disable-search-domain.yaml"
   - "@./patches/global/dns.yaml"
   - "@./patches/global/hostdns.yaml"
+  - "@./patches/global/kernel-modules.yaml"
   - "@./patches/global/kubelet.yaml"
   - "@./patches/global/ntp.yaml"
   - "@./patches/global/openebs-local.yaml"
