@@ -10,6 +10,7 @@
     'github>amasolov/home-ops//.github/renovate/autoMerge.json5',
   ],
   dependencyDashboard: true,
+  platformAutomerge: true,
   dependencyDashboardTitle: 'Renovate Dashboard 🤖',
   suppressNotifications: [
     'prEditedNotification',
