@@ -16,6 +16,12 @@
       "automerge": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "depTypeList": ["devDependencies"],
+      "updateTypes": ["patch"],
+      "automerge": true,
+      "separateMinorPatch": true
     }
   ]
 }
