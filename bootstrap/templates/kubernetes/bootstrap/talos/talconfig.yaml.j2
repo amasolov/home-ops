@@ -46,6 +46,7 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "#{ item.mac_addr | lower }#"
+          physical: true
         #% if bootstrap_vlan %#
         vlans:
           - vlanId: #{ bootstrap_vlan }#
