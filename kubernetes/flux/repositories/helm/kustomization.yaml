@@ -15,3 +15,14 @@ resources:
   - ./external-dns.yaml
   - ./ingress-nginx.yaml
   - ./k8s-gateway.yaml
+  - ./angelnu.yaml
+  - ./backube.yaml
+  - ./bitnami-charts.yaml
+  - ./cloudnative-pg.yaml
+  - ./emqx.yaml
+  - ./external-secrets.yaml
+  - ./grafana.yaml
+  - ./netbox.yaml
+  - ./piraeus.yaml
+  - ./rook-ceph.yaml
+
