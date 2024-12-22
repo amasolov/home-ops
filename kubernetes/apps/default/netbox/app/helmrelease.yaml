@@ -81,6 +81,9 @@ spec:
       optional: true
 
   values:
+    image:
+      repository: ghcr.io/netbox-community/netbox
+      tag: v4.1.9
     admins:
       - ["admin", "${SECRET_ACME_EMAIL}"]
     logging:
@@ -176,10 +179,10 @@ spec:
         - hosts:
             - *host
           secretName: "${SECRET_DOMAIN/./-}-production-tls"
-    init:
-      image:
-        repository: docker.io/library/busybox
-        tag: 1.37.0
+#    init:
+#      image:
+#        repository: docker.io/busybox
+#        tag: 1.37.0
     extraVolumes:
       - name: sso-config
         configMap:
