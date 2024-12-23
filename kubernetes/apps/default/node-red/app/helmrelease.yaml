@@ -57,7 +57,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
         className: "internal"
         hosts:
-          - host: nodered.ktmb1.net
+          - host: node-red.ktmb1.net
             paths:
               - path: /
                 service:
