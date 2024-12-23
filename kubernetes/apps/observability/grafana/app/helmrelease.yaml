@@ -52,6 +52,7 @@ spec:
           - { name: Alertmanager, orgId: 1 }
           - { name: Loki, orgId: 1 }
           - { name: Prometheus, orgId: 1 }
+          - { name: TeslaMate, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
@@ -75,6 +76,22 @@ spec:
             url: http://alertmanager-operated.observability.svc.cluster.local:9093
             jsonData:
               implementation: prometheus
+          - name: TeslaMate
+            type: postgres
+            url: "${TESLAMATE_DBHOST}:5432"
+            user: "${TESLAMATE_DBUSER}"
+            database: "${TESLAMATE_DBNAME}"
+            access: proxy
+            basicAuth: false
+            withCredentials: false
+            isDefault: false
+            secureJsonData:
+              password: "${TESLAMATE_DBPASS}"
+            jsonData:
+              postgresVersion: 1500
+              sslmode: false
+            version: 1
+            editable: true
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
