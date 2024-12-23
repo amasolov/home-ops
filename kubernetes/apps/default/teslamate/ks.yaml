@@ -11,7 +11,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: external-secrets-aws-ssm
+    - name: external-secrets-stores
+    - name: cloudnative-pg-cluster
   path: ./kubernetes/apps/default/teslamate/app
   prune: true
   sourceRef:
