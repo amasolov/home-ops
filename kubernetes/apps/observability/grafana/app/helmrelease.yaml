@@ -79,12 +79,12 @@ spec:
           - name: TeslaMate
             type: postgres
             url: "postgres16-rw.database.svc.cluster.local:5432"
-            user: "${teslamate_dbuser}"
+            user: "teslamate"
             isDefault: false
             secureJsonData:
               password: "${teslamate_dbpass}"
             jsonData:
-              database: "${teslamate_dbname}"
+              database: "teslamate"
               postgresVersion: 1600
               sslmode: disable
               timescaledb: true
