@@ -52,9 +52,9 @@ spec:
             port: 1880
 
     ingress:
-      annotations:
-        external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
       app:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
         className: "internal"
         hosts:
           - host: nodered.ktmb1.net
@@ -63,7 +63,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-
     persistence:
       data:
         existingClaim: node-red-data

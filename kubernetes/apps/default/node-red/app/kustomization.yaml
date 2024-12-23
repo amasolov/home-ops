@@ -6,7 +6,7 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
 # - ../../../../templates/volsync
-  - ./pvc.yaml
+# - ./pvc.yaml
 
 configMapGenerator:
   - name: node-red-configmap
