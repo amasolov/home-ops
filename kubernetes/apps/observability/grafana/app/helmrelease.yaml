@@ -78,18 +78,18 @@ spec:
               implementation: prometheus
           - name: TeslaMate
             type: postgres
-            url: "${TESLAMATE_DBHOST}:5432"
-            user: "${TESLAMATE_DBUSER}"
-            database: "${TESLAMATE_DBNAME}"
+            url: "${teslamate-dbhost}:5432"
+            user: "${teslamate-dbuser}"
+            database: "${teslamate-dbname}"
             access: proxy
             basicAuth: false
             withCredentials: false
             isDefault: false
             secureJsonData:
-              password: "${TESLAMATE_DBPASS}"
+              password: "${teslamate-dbpass}"
             jsonData:
-              postgresVersion: 1500
-              sslmode: false
+              postgresVersion: 1600
+              sslmode: disable
             version: 1
             editable: true
     dashboardProviders:
