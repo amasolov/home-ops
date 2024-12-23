@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: external-secrets-stores
     - name: cloudnative-pg-cluster
-  path: ./kubernetes/apps/default/teslamate/app
+  path: ./kubernetes/apps/observability/teslamate/app
   prune: true
   sourceRef:
     kind: GitRepository

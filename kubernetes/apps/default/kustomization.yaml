@@ -11,4 +11,4 @@ resources:
 #  - ./atuin/ks.yaml
   - ./home-assistant/ks.yaml
   - ./smtp-relay/ks.yaml
-  - ./teslamate/ks.yaml
+
