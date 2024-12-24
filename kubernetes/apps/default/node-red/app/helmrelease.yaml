@@ -55,6 +55,8 @@ spec:
       app:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
         className: "internal"
         hosts:
           - host: node-red.ktmb1.net
