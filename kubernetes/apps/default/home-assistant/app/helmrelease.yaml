@@ -94,21 +94,8 @@ spec:
     ingress:
       app:
         className: external
-        hosts:
-          - host: homeassistant.ktmb1.net
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-            - homeassistant.ktmb1.net
-            secretName: "${SECRET_DOMAIN/./-}-production-tls"
-      app-int:
         annotations:
-          external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
-        className: internal
+          external-dns.alpha.kubernetes.io/target: external.ktmb1.net
         hosts:
           - host: homeassistant.ktmb1.net
             paths:
