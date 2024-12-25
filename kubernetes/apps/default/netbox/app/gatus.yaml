@@ -10,7 +10,7 @@ data:
     endpoints:
       - name: netbox
         group: applications
-        url: https://netbox.alexeym.net
+        url: https://netbox.ktmb1.net
         interval: 1m
         conditions:
           - "[STATUS] == 200"
