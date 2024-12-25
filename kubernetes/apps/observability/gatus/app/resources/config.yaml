@@ -60,7 +60,7 @@ endpoints:
 
   - name: ktmb1-g-sw-001 (main switch)
     group: network-devices
-    url: tcp://ktmb1-g-sw-001.infra.ktmb1.net
+    url: tcp://ktmb1-g-sw-001.infra.ktmb1.net:22
     interval: 1m
     client:
       insecure: true
@@ -71,7 +71,7 @@ endpoints:
 
   - name: ktmb1-g-sw-002 (CCTV switch)
     group: network-devices
-    url: tcp://ktmb1-g-sw-002.infra.ktmb1.net
+    url: tcp://ktmb1-g-sw-002.infra.ktmb1.net:22
     interval: 1m
     client:
       insecure: true
@@ -82,7 +82,7 @@ endpoints:
 
   - name: ktmb1-t-sw-001 (office switch)
     group: network-devices
-    url: tcp://ktmb1-t-sw-001.infra.ktmb1.net
+    url: tcp://ktmb1-t-sw-001.infra.ktmb1.net:22
     interval: 1m
     client:
       insecure: true
@@ -93,7 +93,7 @@ endpoints:
 
   - name: ktmb1-g-wap-001 (garage wireless access point)
     group: network-devices
-    url: tcp://ktmb1-g-wap-001.infra.ktmb1.net
+    url: tcp://ktmb1-g-wap-001.infra.ktmb1.net:22
     interval: 1m
     client:
       insecure: true
@@ -104,7 +104,7 @@ endpoints:
 
   - name: ktmb1-u-wap-001 (upstairs wireless access point)
     group: network-devices
-    url: tcp://ktmb1-u-wap-001.infra.ktmb1.net
+    url: tcp://ktmb1-u-wap-001.infra.ktmb1.net:22
     interval: 1m
     client:
       insecure: true
@@ -115,7 +115,7 @@ endpoints:
 
   - name: ktmb1-t-wap-001 (top floor wireless access point)
     group: network-devices
-    url: tcp://ktmb1-t-wap-001.infra.ktmb1.net
+    url: tcp://ktmb1-t-wap-001.infra.ktmb1.net:22
     interval: 1m
     client:
       insecure: true
