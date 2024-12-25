@@ -13,4 +13,6 @@ resources:
   - ./smtp-relay/ks.yaml
   - ./pgadmin/ks.yaml
   - ./node-red/ks.yaml
-  
+  - ./atuin/ks.yaml
+
+
