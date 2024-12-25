@@ -36,3 +36,121 @@ endpoints:
       - "[STATUS] == 404"
     alerts:
       - type: pushover
+
+  - name: home-assistant
+    group: smart-home
+    url: https://homeassistant.ktmb1.net
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-rt-001 (main router)
+    group: network-devices
+    url: https://ktmb1-g-rt-001.infra.ktmb1.net
+    interval: 1m
+    client:
+      dns-resolver: tcp://192.168.1.1:53
+      insecure: true
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-sw-001 (main switch)
+    group: network-devices
+    url: tcp://ktmb1-g-sw-001.infra.ktmb1.net
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-sw-002 (CCTV switch)
+    group: network-devices
+    url: tcp://ktmb1-g-sw-002.infra.ktmb1.net
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-t-sw-001 (office switch)
+    group: network-devices
+    url: tcp://ktmb1-t-sw-001.infra.ktmb1.net
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-wap-001 (garage wireless access point)
+    group: network-devices
+    url: tcp://ktmb1-g-wap-001.infra.ktmb1.net
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-u-wap-001 (upstairs wireless access point)
+    group: network-devices
+    url: tcp://ktmb1-u-wap-001.infra.ktmb1.net
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-t-wap-001 (top floor wireless access point)
+    group: network-devices
+    url: tcp://ktmb1-t-wap-001.infra.ktmb1.net
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-ups-002 (automatic power transfer switch)
+    group: network-devices
+    url: tcp://ktmb1-g-ups-002.infra.ktmb1.net:23
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: ktmb1-g-srv-001 (philips hue hub)
+    group: smart-home
+    url: tcp://ktmb1-g-srv-001.iot.ktmb1.net:80
+    interval: 1m
+    client:
+      insecure: true
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: pushover
+
+  - name: gatus
+    group: applications
+    url: http://status.ktmb1.net
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: pushover
