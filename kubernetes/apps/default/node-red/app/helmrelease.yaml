@@ -80,7 +80,7 @@ spec:
                   port: http
     persistence:
       data:
-        existingClaim: node-red-data
+        existingClaim: node-red
         advancedMounts:
           node-red:
             app:
