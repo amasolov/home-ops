@@ -18,6 +18,7 @@ spec:
     cleanupTempPVC: true
     enableFileDeletion: true
     copyMethod: Snapshot
+    destinationPVC: ${APP}
     moverSecurityContext:
       runAsUser: ${APP_UID:-1000}
       runAsGroup: ${APP_GID:-1000}
