@@ -8,4 +8,6 @@ resources:
   - ./teslamate/ks.yaml
   - ./grafana/ks.yaml
   - ./gatus/ks.yaml
-    
+  - ./loki/ks.yaml
+
+
