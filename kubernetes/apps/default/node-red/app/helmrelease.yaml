@@ -37,6 +37,19 @@ spec:
             envFrom:
               - secretRef:
                   name: nodered-secret
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: 1880
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 10
+                  failureThreshold: 3
+              readiness: *probes
             resources:
               requests:
                 cpu: 5m
