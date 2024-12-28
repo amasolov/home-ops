@@ -1,4 +1,15 @@
 module.exports = {
+  adminAuth: {
+    type: "credentials",
+    users: [
+        {
+            username: "admin",
+            password: process.env.NODE_RED_PASSWORD,
+            permissions: "*"
+        }
+    ]
+  },
+
   flowFile: "flows.json",
   credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET,
   flowFilePretty: true,
