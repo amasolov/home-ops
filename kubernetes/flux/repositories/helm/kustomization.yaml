@@ -25,4 +25,5 @@ resources:
   - ./netbox.yaml
   - ./piraeus.yaml
   - ./rook-ceph.yaml
+  - ./intel.yaml
 
