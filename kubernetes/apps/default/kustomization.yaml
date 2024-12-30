@@ -15,5 +15,7 @@ resources:
   - ./node-red/ks.yaml
   - ./atuin/ks.yaml
   - ./scrypted/ks.yaml
+  - ./esphome/ks.yaml
+
 
 
