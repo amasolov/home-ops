@@ -10,3 +10,5 @@ resources:
   - ./kubelet-csr-approver/ks.yaml
   - ./spegel/ks.yaml
   - ./intel-device-plugins/ks.yaml
+  - ./node-feature-discovery/ks.yaml
+
