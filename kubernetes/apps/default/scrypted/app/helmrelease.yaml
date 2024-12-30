@@ -32,13 +32,13 @@ spec:
                 "mac": "29:11:76:d6:12:5b"
               }]
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            fsGroup: 1000
-            fsGroupChangePolicy: "OnRootMismatch"
+            # runAsUser: 1000
+            # runAsGroup: 1000
+            # fsGroup: 1000
+            # fsGroupChangePolicy: "OnRootMismatch"
             supplementalGroups:
-              - 44
-              - 109
+              - 65542
+              # - 109
         containers:
           app:
             image:
