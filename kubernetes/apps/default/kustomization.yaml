@@ -14,5 +14,6 @@ resources:
   - ./pgadmin/ks.yaml
   - ./node-red/ks.yaml
   - ./atuin/ks.yaml
+  - ./scrypted/ks.yaml
 
 
