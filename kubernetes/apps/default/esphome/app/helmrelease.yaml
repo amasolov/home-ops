@@ -36,7 +36,9 @@ spec:
             image:
               repository: ghcr.io/esphome/esphome
               tag: 2024.12.2
-
+            envFrom:
+              - secretRef:
+                  name: esphome-secret
             probes:
               liveness:
                 enabled: true
