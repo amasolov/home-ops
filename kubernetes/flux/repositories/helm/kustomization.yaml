@@ -27,4 +27,5 @@ resources:
   - ./rook-ceph.yaml
   - ./intel.yaml
   - ./node-feature-discovery.yaml
+  - ./descheduler.yaml
 
