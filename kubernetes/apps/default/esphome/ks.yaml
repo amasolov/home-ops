@@ -25,6 +25,6 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_CLAIM: esphome-config
+      VOLSYNC_CLAIM: esphome
       APP_UID: "0"
       APP_GID: "0"
