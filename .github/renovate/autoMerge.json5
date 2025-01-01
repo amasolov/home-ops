@@ -30,6 +30,6 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": ["kube-prometheus-stack", "ingress-nginx"],
       "ignoreTests": false
-    },
+    }
   ]
 }
