@@ -52,6 +52,7 @@ spec:
         failureThreshold: 2
       persistence:
         enabled: false
+      redisShutdownWaitFailover: false
     metrics:
       enabled: true
       serviceMonitor:
