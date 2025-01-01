@@ -3,11 +3,11 @@
   "packageRules": [
     {
       "description": ["Auto-merge container digests updates for trusted containers"],
-      "matchDatasources": ["docker"],
+      "matchDatasources": ["docker", "container"],
       "automerge": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["digest"],
-      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p"]
+      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p", "ghcr.io/bjw-s-labs"]
     },
     {
       "description": ["Auto-merge GitHub Actions for minor and patch"],
@@ -22,6 +22,14 @@
       "updateTypes": ["patch"],
       "automerge": true,
       "separateMinorPatch": true
-    }
+    },
+    {
+      "description": "Auto merge minors and patches from non-critical apps",
+      "matchDatasources": ["helm"],
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["kube-prometheus-stack", "ingress-nginx"],
+      "ignoreTests": false
+    },
   ]
 }
