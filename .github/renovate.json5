@@ -8,6 +8,7 @@
     ':semanticCommits',
     ':automergeBranch',
     'github>amasolov/home-ops//.github/renovate/autoMerge.json5',
+    'github>amasolov/home-ops//.github/renovate/labels.json5',
   ],
   dependencyDashboard: true,
   platformAutomerge: true,
