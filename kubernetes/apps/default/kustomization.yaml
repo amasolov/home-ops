@@ -6,7 +6,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./redis/ks.yaml
+  # - ./redis/ks.yaml
   - ./netbox/ks.yaml
   - ./home-assistant/ks.yaml
   - ./smtp-relay/ks.yaml
