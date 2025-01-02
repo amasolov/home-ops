@@ -46,32 +46,12 @@ data:
     mode: cluster
   services.yaml: |
     - Network:
-        - DNS (master):
-            href: https://adguard.alexeym.net/
-            icon: cloudflare-zero-trust.png
-            description: Adguard DNS Status
-            widget:
-              type: adguard
-              url: https://adguard.alexeym.net/
-              username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
-              password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
-              fields: ["queries", "latency"]
-        - DNS (replica):
-            href: https://adguard-replica.alexeym.net/
-            icon: cloudflare-zero-trust.png
-            description: Adguard DNS Status
-            widget:
-              type: adguard
-              url: https://adguard-replica.alexeym.net/
-              username: {{HOMEPAGE_VAR_ADGUARD_REPLICA_USERNAME}}
-              password: {{HOMEPAGE_VAR_ADGUARD_REPLICA_PASSWORD}}
-              fields: ["queries", "latency"]
         - Status:
-            href: https://status.alexeym.net
+            href: https://status.ktmb1.net
             description: KTMB1 status
             widget:
               type: gatus
-              url: https://status.alexeym.net
+              url: https://status.ktmb1.net
         - Cloudflared:
             href: https://dash.cloudflare.com/
             icon: cloudflare-zero-trust.png
@@ -88,18 +68,18 @@ data:
             description: Unifi Dashboard
             widget:
               type: unifi
-              url: https://unifi.home.alexeym.net
+              url: https://unifi.trusted.ktmb1.net
               username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
               password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
               fields: ["uptime", "wan", "lan", "wlan_devices"]
     - Home:
         - Home-Assistant:
-            href: https://homeassistant.alexeym.net
+            href: https://homeassistant.ktmb1.net
             icon: home-assistant.png
             description: Home Automation Software
             widget:
               type: homeassistant
-              url: https://homeassistant.alexeym.net
+              url: https://homeassistant.ktmb1.net
               key: {{HOMEPAGE_VAR_HASS_TOKEN}}
   settings.yaml: |
     title: Dashboard | KTMB1
@@ -182,6 +162,6 @@ data:
           dateStyle: short
           hourCycle: h23
     - unifi_console:
-        url: https://unifi.home.alexeym.net
+        url: https://unifi.trusted.ktmb1.net
         username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
         password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
