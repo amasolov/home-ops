@@ -15,8 +15,8 @@ resources:
   - ./atuin/ks.yaml
   - ./scrypted/ks.yaml
   - ./esphome/ks.yaml
-  - ./homepage/ks.yaml
-  
+  #- ./homepage/ks.yaml
+
 
 
 
