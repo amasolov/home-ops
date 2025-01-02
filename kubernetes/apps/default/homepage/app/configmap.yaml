@@ -52,7 +52,7 @@ data:
             widget:
               type: gatus
               url: https://status.ktmb1.net
-        - Cloudflared:
+        - Cloudflare:
             href: https://dash.cloudflare.com/
             icon: cloudflare-zero-trust.png
             description: Cloudflared Tunnel Status
@@ -61,7 +61,6 @@ data:
               accountid: {{HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID}}
               tunnelid: {{HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}}
               key: {{HOMEPAGE_VAR_CLOUDFLARED_API_TOKEN}}
-              fields: ["status"]
         - Unifi:
             href: https://unifi.ui.com
             icon: unifi.png
