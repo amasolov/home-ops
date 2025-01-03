@@ -22,7 +22,7 @@ spec:
     crds: CreateReplace
     remediation:
       strategy: rollback
-      retries: 3
+      retries: 4
   values:
     fullnameOverride: *app
     provider: cloudflare
