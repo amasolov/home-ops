@@ -1,0 +1,274 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: netbox
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: netbox
+      version: 5.0.12
+      sourceRef:
+        kind: HelmRepository
+        name: netbox
+        namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: superuser_name
+      targetPath: superuser.name
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: superuser_password
+      targetPath: superuser.password
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: superuser_email
+      targetPath: superuser.email
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: superuser_api_token
+      targetPath: superuser.apiToken
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: superuser_email
+      targetPath: superuser.email
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: AWS_ACCESS_KEY_ID
+      targetPath: storageConfig.AWS_ACCESS_KEY_ID
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: AWS_SECRET_ACCESS_KEY
+      targetPath: storageConfig.AWS_SECRET_ACCESS_KEY
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: AWS_STORAGE_BUCKET_NAME
+      targetPath: storageConfig.AWS_STORAGE_BUCKET_NAME
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: AWS_S3_ENDPOINT_URL
+      targetPath: storageConfig.AWS_S3_ENDPOINT_URL
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: AWS_S3_ENDPOINT_URL
+      targetPath: storageConfig.AWS_S3_ENDPOINT_URL
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: AWS_S3_REGION_NAME
+      targetPath: storageConfig.AWS_S3_REGION_NAME
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: redis_password
+      targetPath: tasksRedis.password
+      optional: true
+    - kind: Secret
+      name: netbox-secret
+      valuesKey: redis_password
+      targetPath: cachingRedis.password
+      optional: true
+
+  values:
+    image:
+      repository: ghcr.io/netbox-community/netbox
+      tag: v4.2.1
+    admins:
+      - ["admin", "${SECRET_ACME_EMAIL}"]
+    logging:
+      disable_existing_loggers: false
+      handlers:
+        console:
+          class: logging.StreamHandler
+      loggers:
+        netbox.authentication.*:
+          handlers:
+            - console
+          level: DEBUG
+      version: 1
+    remoteAuth:
+      enabled: true
+      backend: social_core.backends.open_id_connect.OpenIdConnectAuth
+      autoCreateUser: false
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/instance: netbox
+                app.kubernetes.io/name: netbox
+                app.kubernetes.io/component: netbox
+            topologyKey: kubernetes.io/hostname
+    loginRequired: true
+    timeZone: "Australia/Sydney"
+    dateFormat: "j. F, Y"
+    shortDateFormat: "j.m.Y"
+    timeFormat: "G:i"
+    shortTimeFormat: "H:i:s"
+    dateTimeFormat: "j. F, Y g:i a"
+    shortDateTimeFormat: "j.m.Y H:i"
+    storageBackend: storages.backends.s3boto3.S3Boto3Storage
+    existingSecret: netbox-secret
+    metricsEnabled: true
+    postgresql:
+      enabled: false
+    redis:
+      enabled: false
+    auth:
+      sentinel: true
+    tasksRedis:
+      sentinels:
+        - redis.default.svc.cluster.local:26379
+      sentinelService: "redis-master"
+      existingSecretName: "netbox-secret"
+      existingSecretKey: redis_password
+    cachingRedis:
+      sentinels:
+        - redis.default.svc.cluster.local:26379
+      sentinelService: "redis-master"
+      existingSecretName: "netbox-secret"
+      existingSecretKey: redis_password
+    externalDatabase:
+      host: postgres16-rw.database.svc.cluster.local
+      port: 5432
+      database: netbox_db
+      username: netbox
+      existingSecretName: "netbox-secret"
+      existingSecretKey: "db_password"
+    email:
+      server: smtp-relay.default.svc.cluster.local
+      port: 25
+      from: netbox@$ktmb1.net
+    persistence:
+      enabled: false
+    reportsPersistence:
+      enabled: false
+    livenessProbe:
+      enabled: true
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 5
+      successThreshold: 1
+
+    readinessProbe:
+      enabled: true
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 5
+      successThreshold: 1
+
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 10
+      successThreshold: 1
+
+    ingress:
+      enabled: true
+      className: internal
+      annotations:
+        external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
+      hosts:
+        - host: &host "netbox.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: netbox
+                  port:
+                    number: 80
+#    init:
+#      image:
+#        repository: docker.io/busybox
+#        tag: 1.37.0
+    extraVolumes:
+      - name: sso-config
+        configMap:
+          name: netbox-configmap
+          items:
+            - key: authentik.py
+              path: authentik.py
+      - name: sso-pipeline
+        configMap:
+          name: netbox-configmap
+          items:
+            - key: custom_pipeline.py
+              path: custom_pipeline.py
+    extraVolumeMounts:
+        - name: sso-config
+          subPath: authentik.py
+          mountPath: /etc/netbox/config/authentik.py
+        - name: sso-pipeline
+          subPath: custom_pipeline.py
+          mountPath: /opt/netbox/netbox/netbox/custom_pipeline.py
+
+    extraInitContainers:
+      - image: ghcr.io/onedr0p/postgres-init:16
+        name: init-db
+        securityContext:
+          runAsUser: 999
+        envFrom: &envFrom
+          - secretRef:
+              name: netbox-secret
+    extraConfig:
+      - secret:
+          secretName: netbox-secret
+    extraEnvs:
+      - name: "SOCIAL_AUTH_OIDC_ENDPOINT"
+        valueFrom:
+          secretKeyRef:
+            key: SOCIAL_AUTH_OIDC_ENDPOINT
+            name: netbox-secret
+      - name: "SOCIAL_AUTH_OIDC_KEY"
+        valueFrom:
+          secretKeyRef:
+            key: SOCIAL_AUTH_OIDC_KEY
+            name: netbox-secret
+      - name: "SOCIAL_AUTH_OIDC_SECRET"
+        valueFrom:
+          secretKeyRef:
+            key: SOCIAL_AUTH_OIDC_SECRET
+            name: netbox-secret
+      - name: "LOGOUT_REDIRECT_URL"
+        valueFrom:
+          secretKeyRef:
+            key: LOGOUT_REDIRECT_URL
+            name: netbox-secret
+      - name: "REMOTE_AUTH_ENABLED"
+        valueFrom:
+          secretKeyRef:
+            key: REMOTE_AUTH_ENABLED
+            name: netbox-secret
+      - name: "REMOTE_AUTH_BACKEND"
+        valueFrom:
+          secretKeyRef:
+            key: REMOTE_AUTH_BACKEND
+            name: netbox-secret
+      - name: "SOCIAL_AUTH_OIDC_SCOPE"
+        valueFrom:
+          secretKeyRef:
+            key: SOCIAL_AUTH_OIDC_SCOPE
+            name: netbox-secret
+    updateStrategy:
+      type: RollingUpdate
+    worker:
+      replicaCount: 1
+      enabled: true
+      updateStrategy:
+        type: RollingUpdate

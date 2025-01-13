@@ -1,0 +1,176 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: home-assistant
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  values:
+    controllers:
+      home-assistant:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |
+              [{
+                "name":"multus-iot",
+                "namespace": "network",
+                "ips": ["192.168.2.2/24"],
+                "mac": "aa:f8:38:83:3c:e8"
+              }]
+        containers:
+          app:
+            image:
+              repository: ghcr.io/onedr0p/home-assistant
+              tag: 2025.1.2@sha256:7103698ead18144a39ae5412467fe1885331367aeb22a9c2046640f0c8f84cf7
+            env:
+              TZ: Australia/Sydney
+            envFrom:
+              - secretRef:
+                  name: home-assistant-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 4Gi
+          code-server:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.96.2@sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699
+            args: [
+              "--auth", "none",
+              "--user-data-dir", "/config/.vscode",
+              "--extensions-dir", "/config/.vscode",
+              "--port", "12321",
+              "/config"
+            ]
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+    service:
+      app:
+        controller: home-assistant
+        ports:
+          http:
+            port: 8123
+          code-server:
+            port: 12321
+    ingress:
+      app:
+        className: external
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Host $host;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+          nginx.ingress.kubernetes.io/auth-method: GET
+          nginx.ingress.kubernetes.io/auth-url: |-
+            http://ak-outpost-authentik-embedded-outpost.default.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+          nginx.ingress.kubernetes.io/auth-signin: |-
+            https://homeassistant.ktmb1.net/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
+          nginx.ingress.kubernetes.io/auth-response-headers: |-
+            Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid
+          nginx.ingress.kubernetes.io/auth-snippet: |
+            proxy_set_header X-Forwarded-Host $http_host;
+            if ( $request_uri !~* "^\/auth\/\.*$" ) {
+              return 200;
+            }
+          nginx.ingress.kubernetes.io/server-snippet: |
+            proxy_buffers 8 16k;
+            proxy_buffer_size 32k;
+            # Ensure no port redirection in Nginx
+            port_in_redirect off;
+            # location /auth/token {
+            #   # Internal Home Assistant address
+            #   proxy_pass          http://home-assistant.default.svc.cluster.local:8123;
+            #   proxy_set_header Host $host;
+            #   proxy_set_header X-Real-IP $remote_addr;
+            #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            #   proxy_set_header X-Forwarded-Proto $scheme;
+            # }
+          external-dns.alpha.kubernetes.io/target: external.ktmb1.net
+        hosts:
+          - host: homeassistant.ktmb1.net
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+      sso:
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: external.ktmb1.net
+        hosts:
+          - host: homeassistant.ktmb1.net
+            paths:
+              - path: /outpost.goauthentik.io
+                pathType: Prefix
+                service:
+                  name: ak-outpost-authentik-embedded-outpost
+                  port: 9000
+      code-server:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
+        className: internal
+        hosts:
+          - host: homeassistant-code.ktmb1.net
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: code-server
+    persistence:
+      config:
+        existingClaim: home-assistant
+        globalMounts:
+          - path: /config
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
+      tts:
+        type: emptyDir
+        globalMounts:
+          - path: /config/tts
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
