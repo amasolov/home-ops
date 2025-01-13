@@ -16,3 +16,18 @@ resources:
   - ./prometheus-community.yaml
   - ./spegel.yaml
   - ./stakater.yaml
+  - ./angelnu.yaml
+  - ./backube.yaml
+  - ./bitnami-charts.yaml
+  - ./cloudnative-pg.yaml
+  - ./descheduler.yaml
+  - ./emqx.yaml
+  - ./external-secrets.yaml
+  - ./grafana.yaml
+  - ./intel.yaml
+  - ./netbox.yaml
+  - ./node-feature-discovery.yaml
+  - ./piraeus.yaml
+  - ./postfinance.yaml
+  - ./rook-ceph.yaml
+  - ./zitadel.yaml
