@@ -94,37 +94,6 @@ spec:
       app:
         className: external
         annotations:
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Host $host;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "Upgrade";
-          nginx.ingress.kubernetes.io/auth-method: GET
-          nginx.ingress.kubernetes.io/auth-url: |-
-            http://ak-outpost-authentik-embedded-outpost.default.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-          nginx.ingress.kubernetes.io/auth-signin: |-
-            https://homeassistant.ktmb1.net/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
-          nginx.ingress.kubernetes.io/auth-response-headers: |-
-            Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid
-          nginx.ingress.kubernetes.io/auth-snippet: |
-            proxy_set_header X-Forwarded-Host $http_host;
-            if ( $request_uri !~* "^\/auth\/\.*$" ) {
-              return 200;
-            }
-          nginx.ingress.kubernetes.io/server-snippet: |
-            proxy_buffers 8 16k;
-            proxy_buffer_size 32k;
-            # Ensure no port redirection in Nginx
-            port_in_redirect off;
-            # location /auth/token {
-            #   # Internal Home Assistant address
-            #   proxy_pass          http://home-assistant.default.svc.cluster.local:8123;
-            #   proxy_set_header Host $host;
-            #   proxy_set_header X-Real-IP $remote_addr;
-            #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            #   proxy_set_header X-Forwarded-Proto $scheme;
-            # }
           external-dns.alpha.kubernetes.io/target: external.ktmb1.net
         hosts:
           - host: homeassistant.ktmb1.net
@@ -134,18 +103,6 @@ spec:
                 service:
                   identifier: app
                   port: http
-      sso:
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.ktmb1.net
-        hosts:
-          - host: homeassistant.ktmb1.net
-            paths:
-              - path: /outpost.goauthentik.io
-                pathType: Prefix
-                service:
-                  name: ak-outpost-authentik-embedded-outpost
-                  port: 9000
       code-server:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
