@@ -25,16 +25,6 @@ spec:
           Level: info
           Formatter:
             Format: text
-        FirstInstance:
-          Org:
-            Machine:
-              Machine:
-                Username: zitadel-admin-sa
-                Name: Admin
-              MachineKey:
-                ExpirationDate: "2026-01-01T00:00:00Z"
-                # Type: 1 means JSON. This is currently the only supported machine key type.
-                Type: 1
         Database:
           postgres:
             Host: postgres16-rw.database.svc.cluster.local
@@ -107,6 +97,16 @@ spec:
           secretKeyRef:
             name: zitadel-secret
             key: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
+      - name: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: zitadel-secret
+            key: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME
+      - name: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: zitadel-secret
+            key: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD
 
     service:
       type: ClusterIP
@@ -127,7 +127,7 @@ spec:
 
     initJob:
       # Once ZITADEL is installed, the initJob can be disabled.
-      enabled: false
+      enabled: true
 
     readinessProbe:
       enabled: true
