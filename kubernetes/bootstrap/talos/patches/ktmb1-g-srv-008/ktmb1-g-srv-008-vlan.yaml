@@ -1,0 +1,23 @@
+- op: add
+  path: /machine/network/interfaces
+  value:
+    - deviceSelector:
+        hardwareAddr: 54:bf:64:7a:dc:4d
+        physical: true
+      addresses:
+        - 192.168.8.2/24
+      routes:
+        - network: 0.0.0.0/0
+          gateway: 192.168.8.1
+      mtu: 9000
+      dhcp: false
+      vip:
+        ip: 192.168.8.10
+      vlans:
+        - vlanId: 002
+          dhcp: false
+          addresses:
+            - "192.168.2.8/24"
+          routes:
+            - network: 192.168.2.0/24
+              gateway: 192.168.2.1
