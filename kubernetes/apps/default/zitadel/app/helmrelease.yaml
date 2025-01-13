@@ -15,6 +15,16 @@ spec:
         kind: HelmRepository
         name: zitadel
         namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: zitadel-secret
+      valuesKey: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME
+      targetPath: zitadel.configmapConfig.FirstInstance.Org.Human.Username
+    - kind: Secret
+      name: zitadel-secret
+      valuesKey: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD
+      targetPath: zitadel.configmapConfig.FirstInstance.Org.Human.Password
+
   values:
     zitadel:
       # The ZITADEL config under configmapConfig is written to a Kubernetes ConfigMap
