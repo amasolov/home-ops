@@ -1,0 +1,43 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: multus
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: multus
+      version: 5.0.7
+      sourceRef:
+        kind: HelmRepository
+        name: angelnu
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    image:
+      repository: ghcr.io/k8snetworkplumbingwg/multus-cni
+      tag: v4.1.4-thick@sha256:df8c2963d8356484a856d9949d2f0150ed1d430f5b0979fa041d04eb2bce6403
+      logLevel: error
+    cni:
+      image:
+        repository: ghcr.io/angelnu/cni-plugins
+        tag: 1.6.2@sha256:6cc82d8fad82099dfb8e3e2e2dfe13dac2c6ee2356a94d7219169f8cdcaeb7d3
+      logLevel: error
+      paths:
+        bin: /opt/cni/bin
+        config: /etc/cni/net.d
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 1024Mi
+    hostPaths:
+      netns: /var/run/netns
