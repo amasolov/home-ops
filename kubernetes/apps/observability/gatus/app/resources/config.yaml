@@ -21,6 +21,13 @@ alerting:
       send-on-resolved: true
       failure-threshold: 3
       success-threshold: 3
+security:
+    oidc:
+        issuer-url: https://sso.ktmb1.net
+        client-id: ${CLIENT_ID}
+        client-secret: ${CLIENT_SECRET}
+        redirect-url: https://status.ktmb1.net/authorization-code/callback
+        scopes: [openid]
 connectivity:
   checker:
     target: 1.1.1.1:53
