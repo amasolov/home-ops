@@ -49,7 +49,7 @@ spec:
         LogStore:
           Access:
             Stdout:
-              Enabled: true
+              Enabled: false
 
         ExternalDomain: &host sso.${SECRET_DOMAIN}
         # specifies if ZITADEL is exposed externally through TLS
@@ -137,7 +137,7 @@ spec:
 
     initJob:
       # Once ZITADEL is installed, the initJob can be disabled.
-      enabled: false
+      enabled: true
 
     readinessProbe:
       enabled: true
