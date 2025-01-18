@@ -53,11 +53,15 @@ spec:
       GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://sso.${SECRET_DOMAIN}/oauth/v2/authorize
       GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://sso.${SECRET_DOMAIN}/oauth/v2/token
       GF_AUTH_GENERIC_OAUTH_API_URL: https://sso.${SECRET_DOMAIN}/oidc/v1/userinfo
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_AUTH_ANONYMOUS_ENABLED: true
     grafana.ini:
       analytics:
         check_for_updates: false
         check_for_plugin_updates: false
         reporting_enabled: false
+        auth:
+          disable_login_form: true
         auth.anonymous:
           enabled: true
           org_id: 1
@@ -66,7 +70,7 @@ spec:
       news:
         news_feed_enabled: false
       server:
-        root_url: https://grafana.ktmb1.net
+        root_url: https://grafana.${SECRET_DOMAIN}
       users:
         allow_sign_up: false
         allow_org_create: true
