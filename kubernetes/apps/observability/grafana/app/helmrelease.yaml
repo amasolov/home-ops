@@ -20,6 +20,11 @@ spec:
       valuesKey: oauth_client_id
       targetPath: env.GF_AUTH_GENERIC_OAUTH_CLIENT_ID
       optional: false
+    - kind: Secret
+      name: grafana-secret
+      valuesKey: teslamate_dbpass
+      targetPath: env.teslamate_dbpass
+      optional: false
   install:
     remediation:
       retries: 3
@@ -114,7 +119,7 @@ spec:
             user: "teslamate"
             isDefault: false
             secureJsonData:
-              password: "${teslamate_dbpass}"
+              password: $teslamate_dbpass
             jsonData:
               database: "teslamate"
               postgresVersion: 1600
