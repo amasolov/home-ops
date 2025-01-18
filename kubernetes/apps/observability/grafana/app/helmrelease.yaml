@@ -44,7 +44,7 @@ spec:
       GF_AUTH_GENERIC_OAUTH_USE_PKCE: true
       GF_AUTH_GENERIC_OAUTH_USE_REFRESH_TOKEN: true
       GF_AUTH_GENERIC_OAUTH_SCOPES: openid email profile offline_access
-      #GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: contains(keys("urn:zitadel:iam:org:project:roles"), 'gadmin') && 'GrafanaAdmin' || contains(keys("urn:zitadel:iam:org:project:roles"), 'geditor') && 'Editor' || contains(keys("urn:zitadel:iam:org:project:roles"), 'gviewer') && 'Viewer'
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: contains(keys('urn:zitadel:iam:org:project:roles), 'admin') && 'GrafanaAdmin' || contains(keys('urn:zitadel:iam:org:project:roles'), 'editor') && 'Editor' || contains(keys('urn:zitadel:iam:org:project:roles'), 'viewer') && 'Viewer'
       GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN: true
       GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT: true
       GF_AUTH_GENERIC_OAUTH_EMAIL_ATTRIBUTE_PATH: email
