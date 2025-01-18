@@ -14,6 +14,12 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: grafana-secret
+      valuesKey: oauth_client_id
+      targetPath: env.GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+      optional: false
   install:
     remediation:
       retries: 3
@@ -32,18 +38,31 @@ spec:
       GF_EXPLORE_ENABLED: true
       GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
       GF_SECURITY_ANGULAR_SUPPORT_ENABLED: true
-      GF_SERVER_ROOT_URL: https://grafana.ktmb1.net
+      GF_SERVER_ROOT_URL: https://grafana.${SECRET_DOMAIN}
+      GF_AUTH_GENERIC_OAUTH_ENABLED: true
+      GF_AUTH_GENERIC_OAUTH_NAME: "KTMB1 SSO"
+      GF_AUTH_GENERIC_OAUTH_USE_PKCE: true
+      GF_AUTH_GENERIC_OAUTH_USE_REFRESH_TOKEN: true
+      GF_AUTH_GENERIC_OAUTH_SCOPES: openid email profile offline_access
+      #GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: contains(keys("urn:zitadel:iam:org:project:roles"), 'gadmin') && 'GrafanaAdmin' || contains(keys("urn:zitadel:iam:org:project:roles"), 'geditor') && 'Editor' || contains(keys("urn:zitadel:iam:org:project:roles"), 'gviewer') && 'Viewer'
+      GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN: true
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT: true
+      GF_AUTH_GENERIC_OAUTH_EMAIL_ATTRIBUTE_PATH: email
+      GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH: preferred_username
+      GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH: name
+      GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://sso.${SECRET_DOMAIN}/oauth/v2/authorize
+      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://sso.${SECRET_DOMAIN}/oauth/v2/token
+      GF_AUTH_GENERIC_OAUTH_API_URL: https://sso.${SECRET_DOMAIN}/oidc/v1/userinfo
     grafana.ini:
-      role_attribute_path: contains('"user-roles[*]"', 'monitoring') && 'Editor' || 'admin'
       analytics:
         check_for_updates: false
         check_for_plugin_updates: false
         reporting_enabled: false
-      auth.anonymous:
-        enabled: true
-        org_id: 1
-        org_name: KTMB1
-        org_role: Viewer
+        auth.anonymous:
+          enabled: true
+          org_id: 1
+          org_name: KTMB1
+          org_role: Viewer
       news:
         news_feed_enabled: false
       server:
@@ -54,22 +73,6 @@ spec:
         auto_assign_org: true
         auto_assign_org_id: 1
         auto_assign_org_role: Viewer
-        verify_email_enabled: false
-        login_hint: email or username
-        password_hint: password
-      auth.generic_oath:
-        enabled: true
-        name: zitadel
-        allow_sign_up: true
-        client_id: 302985773223838096
-        scopes: openid email profile offline_access roles
-        email_attribute_name: email
-        login_attribute_path: username
-        name_attribute_path: fullname
-        auth_url: https://sso.ktmb1.net/oauth/v2/authorize
-        token_url: https://sso.ktmb1.net/oauth/v2/token
-        api_url: https://sso.ktmb1.net/oidc/v1/userinfo
-        use_pkce: true
     datasources:
       datasources.yaml:
         apiVersion: 1
