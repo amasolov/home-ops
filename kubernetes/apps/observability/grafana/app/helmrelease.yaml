@@ -141,6 +141,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+          - name: "teslamate"
+            orgId: 1
+            folder: "Teslamate"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/teslamate
     dashboards:
 
       default:
