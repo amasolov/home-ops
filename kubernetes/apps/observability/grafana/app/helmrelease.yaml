@@ -48,8 +48,8 @@ spec:
       GF_AUTH_GENERIC_OAUTH_NAME: "KTMB1 SSO"
       GF_AUTH_GENERIC_OAUTH_USE_PKCE: true
       GF_AUTH_GENERIC_OAUTH_USE_REFRESH_TOKEN: false
-      GF_AUTH_GENERIC_OAUTH_SCOPES: openid email profile offline_access urn:zitadel:iam:org:project:id:zitadel:aud
-      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: contains(keys('urn:zitadel:iam:org:project:roles), 'admin') && 'GrafanaAdmin' || contains(keys('urn:zitadel:iam:org:project:roles'), 'editor') && 'Editor' || contains(keys('urn:zitadel:iam:org:project:roles'), 'viewer') && 'Viewer'
+      GF_AUTH_GENERIC_OAUTH_SCOPES: openid email profile offline_access
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: contains(keys(\"urn:zitadel:iam:org:project:roles\"), 'admin') && 'GrafanaAdmin' || contains(keys(\"urn:zitadel:iam:org:project:roles\"), 'editor') && 'Editor' || contains(keys(\"urn:zitadel:iam:org:project:roles\"), 'viewer') && 'Viewer'
       GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN: true
       GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_STRICT: true
       GF_AUTH_GENERIC_OAUTH_EMAIL_ATTRIBUTE_PATH: email
@@ -78,7 +78,7 @@ spec:
         root_url: https://grafana.${SECRET_DOMAIN}
       users:
         allow_sign_up: false
-        allow_org_create: true
+        allow_org_create: false
         auto_assign_org: true
         auto_assign_org_id: 1
         auto_assign_org_role: Viewer
