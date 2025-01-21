@@ -126,17 +126,13 @@ spec:
     redis:
       enabled: false
     auth:
-      sentinel: true
+      sentinel: false
     tasksRedis:
-      sentinels:
-        - redis.default.svc.cluster.local:26379
-      sentinelService: "redis-master"
+      host: dragonfly.database.svc.cluster.local
       existingSecretName: "netbox-secret"
       existingSecretKey: redis_password
     cachingRedis:
-      sentinels:
-        - redis.default.svc.cluster.local:26379
-      sentinelService: "redis-master"
+      host: dragonfly.database.svc.cluster.local
       existingSecretName: "netbox-secret"
       existingSecretKey: redis_password
     externalDatabase:
