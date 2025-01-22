@@ -43,7 +43,7 @@ spec:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 1.16.1
             env:
-              PAPERLESS_ALLOWED_HOSTS: paperless.devbu.io
+              PAPERLESS_ALLOWED_HOSTS: paperless.${SECRET_DOMAIN}
               PAPERLESS_CONSUMER_POLLING: 60
               PAPERLESS_CONSUMER_RECURSIVE: "true"
               PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
@@ -55,7 +55,7 @@ spec:
               PAPERLESS_MEDIA_ROOT: /library/media
               PAPERLESS_OCR_LANGUAGE: eng
               PAPERLESS_PORT: &port 80
-              PAPERLESS_REDIS: redis://localhost:6379
+              PAPERLESS_REDIS: redis://:${REDIS_PASSWORD}@dragonfly.database.svc.cluster.local:6379
               PAPERLESS_TASK_WORKERS: 2
               PAPERLESS_TIKA_ENABLED: 1
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
