@@ -10,8 +10,8 @@ spec:
   accessModes: ["ReadWriteMany"]
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: expanse.turbo.ac
-    path: /eros/Apps/Paperless
+    server: ktmb1-g-srv-004.iot.ktmb1.net
+    path: /data/nfs/apps/paperless
   # Note: The first two options are strictly for NFSv4.2
   mountOptions: ["nfsvers=4.2", "nconnect=8", "hard", "noatime"]
 ---
