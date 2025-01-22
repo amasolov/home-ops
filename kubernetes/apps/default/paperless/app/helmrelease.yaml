@@ -4,26 +4,20 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: paperless
-  namespace: default
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
       version: 3.6.1
+      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     controllers:
       paperless:
@@ -41,72 +35,75 @@ spec:
           app:
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
-              tag: 2.14.5
+              tag: 2.14.4
             env:
-              PAPERLESS_ALLOWED_HOSTS: paperless.${SECRET_DOMAIN}
-              PAPERLESS_CONSUMER_POLLING: 60
+              # Configure application
+              PAPERLESS_SECRET_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secret
+                    key: PAPERLESS_SECRET_KEY
+              PAPERLESS_URL: https://paperless.${SECRET_DOMAIN}
+              PAPERLESS_PORT: &port "8000"
+              PAPERLESS_TIME_ZONE: "Australia/Sydney"
+              PAPERLESS_WEBSERVER_WORKERS: "2"
+              PAPERLESS_TASK_WORKERS: "2"
+              # Configure folders
+              PAPERLESS_CONSUMPTION_DIR: /data/nas/incoming
+              PAPERLESS_DATA_DIR: /data/local/data
+              PAPERLESS_EXPORT_DIR: /data/nas/export
+              PAPERLESS_MEDIA_ROOT: /data/local/media
+              # Configure folder importer
+              PAPERLESS_CONSUMER_POLLING: "60"
               PAPERLESS_CONSUMER_RECURSIVE: "true"
               PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
-              PAPERLESS_CONSUMPTION_DIR: /library/consume
-              PAPERLESS_DATA_DIR: /library/data
-              PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
-              PAPERLESS_EXPORT_DIR: /library/export
-              PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_REMOTE_USER
-              PAPERLESS_MEDIA_ROOT: /library/media
+              # Configure OCR
+              PAPERLESS_OCR_LANGUAGES: eng
               PAPERLESS_OCR_LANGUAGE: eng
-              PAPERLESS_PORT: &port 80
+              # Configure redis integration
               PAPERLESS_REDIS: redis://:${REDIS_PASSWORD}@dragonfly.database.svc.cluster.local:6379
-              PAPERLESS_TASK_WORKERS: 2
-              PAPERLESS_TIKA_ENABLED: 1
-              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
-              PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
-              PAPERLESS_TIME_ZONE: Australia/Sydney
-              PAPERLESS_TRUSTED_PROXIES: 10.42.0.0/16,192.168.8.0/24
-              PAPERLESS_URL: https://paperless.${SECRET_DOMAIN}
-            envFrom: *envFrom
+              # Configure user permissions
+              USERMAP_GID: "65542" # gladius:external-services
+              # Configure admin user
+              PAPERLESS_ADMIN_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secret
+                    key: PAPERLESS_ADMIN_USER
+              PAPERLESS_ADMIN_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secret
+                    key: PAPERLESS_ADMIN_PASSWORD
             probes:
-              liveness: &probes
+              liveness:
                 enabled: true
-                custom: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
                 spec:
-                  httpGet:
-                    path: /health
-                    port: *port
-                  initialDelaySeconds: 30
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources: &resources
+                  failureThreshold: 30
+                  periodSeconds: 5
+            resources:
               requests:
-                cpu: 10m
+                cpu: 25m
+                memory: 2Gi
               limits:
-                memory: 256Mi
+                memory: 6Gi
     service:
       app:
         controller: paperless
         ports:
           http:
-            port: *port
-    serviceMonitor:
-      app:
-        serviceName: paperless
-        endpoints:
-          - port: http
-            scheme: http
-            path: /metrics
-            interval: 1m
-            scrapeTimeout: 10s
+            port: 8000
     ingress:
       app:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
-        className: internal
+        className: "internal-nginx"
         hosts:
-          - host: paperless.ktmb1.net
+          - host: paperless.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
@@ -115,27 +112,19 @@ spec:
     serviceAccount:
       create: true
       name: paperless
+
     persistence:
-      library:
-        enabled: true
-        existingClaim: paperless-nfs
-        globalMounts:
-          - path: /library
-    resources:
-      requests:
-        cpu: 100m
-        memory: 1000Mi
-      limits:
-        memory: 5000Mi
-    sidecars:
-      gotenburg:
-        image: thecodingmachine/gotenberg:8.15.3
-        imagePullPolicy: IfNotPresent
-        env:
-          - { name: DISABLE_GOOGLE_CHROME, value: "1" }
-      redis:
-        image: public.ecr.aws/docker/library/redis:7.4.2
-        imagePullPolicy: IfNotPresent
-      tika:
-        image: ghcr.io/paperless-ngx/tika:2.9.1-full
-        imagePullPolicy: IfNotPresent
+      data:
+        existingClaim: paperless-data
+        advancedMounts:
+          paperless:
+            app:
+              - path: /data/local
+      nas:
+        type: nfs
+        server:  ktmb1-g-srv-004.iot.ktmb1.net
+        path: /data/nfs/apps/paperless
+        advancedMounts:
+          paperless:
+            app:
+              - path: /data/nas

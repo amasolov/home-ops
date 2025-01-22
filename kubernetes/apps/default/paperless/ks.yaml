@@ -12,7 +12,8 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: cloudnative-pg-cluster
-  path: ./kubernetes/apps/default/paperless/app
+    - name: external-secrets-store
+    - name: volsync
   prune: true
   sourceRef:
     kind: GitRepository
@@ -23,4 +24,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-
+      APP_UID: "1000"
+      APP_GID: "65542"
+      VOLSYNC_CLAIM: paperless-data
+      VOLSYNC_CAPACITY: 15Gi
