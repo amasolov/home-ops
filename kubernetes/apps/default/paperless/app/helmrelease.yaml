@@ -60,8 +60,6 @@ spec:
               # Configure OCR
               PAPERLESS_OCR_LANGUAGES: eng
               PAPERLESS_OCR_LANGUAGE: eng
-              # Configure redis integration
-              PAPERLESS_REDIS: redis://:${REDIS_PASSWORD}@dragonfly.database.svc.cluster.local:6379
               # Configure user permissions
               USERMAP_GID: "65542" # gladius:external-services
               # Configure admin user
