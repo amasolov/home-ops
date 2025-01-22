@@ -100,7 +100,7 @@ spec:
       app:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
-        className: "internal-nginx"
+        className: "internal"
         hosts:
           - host: paperless.${SECRET_DOMAIN}
             paths:
