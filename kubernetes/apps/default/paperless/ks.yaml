@@ -11,8 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: rook-ceph-cluster
-    - name: volsync
+    - name: cloudnative-pg-cluster
   path: ./kubernetes/apps/default/paperless/app
   prune: true
   sourceRef:
@@ -24,7 +23,4 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 5Gi
-      VOLSYNC_CLAIM: paperless-media
-      APP_UID: "0"
-      APP_GID: "0"
+

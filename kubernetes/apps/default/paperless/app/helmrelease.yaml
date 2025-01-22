@@ -63,8 +63,6 @@ spec:
               PAPERLESS_TIME_ZONE: Australia/Sydney
               PAPERLESS_TRUSTED_PROXIES: 10.42.0.0/16,192.168.8.0/24
               PAPERLESS_URL: https://paperless.${SECRET_DOMAIN}
-              USERMAP_UID: 568
-              USERMAP_GID: 568
             envFrom: *envFrom
             probes:
               liveness: &probes
