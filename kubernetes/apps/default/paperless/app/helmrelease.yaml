@@ -36,6 +36,7 @@ spec:
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.14.4
+            envFrom: *envFrom
             env:
               # Configure application
               PAPERLESS_SECRET_KEY:
