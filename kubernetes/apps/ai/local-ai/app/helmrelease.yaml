@@ -32,9 +32,6 @@ spec:
       image:
         repository: quay.io/go-skynet/local-ai
         tag: v2.25.0-sycl-f32-ffmpeg-core
-
-#      runtimeClassName: nvidia
-
       env:
         debug: true
         OPENAI_API_KEY: "sk-XXXXXXXXXXXXXXXXXXXX"
