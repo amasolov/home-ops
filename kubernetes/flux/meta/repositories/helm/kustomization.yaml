@@ -32,4 +32,5 @@ resources:
   - ./rook-ceph.yaml
   - ./zitadel.yaml
   - ./actions-runner-controller.yaml
+  - ./go-skynet.yaml
 
