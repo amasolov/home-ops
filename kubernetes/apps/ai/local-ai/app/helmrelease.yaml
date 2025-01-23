@@ -52,11 +52,13 @@ spec:
         enabled: true
         annotations: {}
         storageClass: ceph-block
+        accessModes: "ReadWriteOnce"
         globalMount: /models
 
       output:
         enabled: true
         annotations: {}
+        accessModes: "ReadWriteOnce"
         storageClass: ceph-block
         globalMount: /tmp/generated
 
