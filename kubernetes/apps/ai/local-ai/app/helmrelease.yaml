@@ -34,9 +34,9 @@ spec:
         tag: v2.25.0-sycl-f32-ffmpeg-core
       env:
         - name: THREADS
-          value: 4
+          value: "4"
         - name: CONTEXT_SIZE
-          value: 512
+          value: "512"
         - name: MODELS_PATH
           value: "/models"
         - name: IMAGE_PATH
@@ -46,7 +46,7 @@ spec:
         - name: GO_TAGS
           value: stablediffusion
         - name: LLAMA_CLBLAST
-          value: 1
+          value: "1"
         - name: DEBUG
           value: "true"
     lifecycle:
