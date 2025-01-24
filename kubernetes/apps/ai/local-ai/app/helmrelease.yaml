@@ -36,9 +36,9 @@ spec:
         - name: THREADS
           value: "4"
         - name: CONTEXT_SIZE
-          value: 512
+          value: "512"
         - name: MODELS_PATH
-          value: "/models"
+          value: /models
         - name: IMAGE_PATH
           value: /tmp
         - name: BUILD_TYPE
@@ -46,9 +46,9 @@ spec:
         - name: GO_TAGS
           value: stablediffusion
         - name: LLAMA_CLBLAST
-          value: "1"
+          value: 1
         - name: DEBUG
-          value: "true"
+          value: true
     lifecycle:
       postStart:
         exec:
