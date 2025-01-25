@@ -31,24 +31,24 @@ spec:
     deployment:
       image:
         repository: quay.io/go-skynet/local-ai
-        tag: v2.25.0-sycl-f32-ffmpeg-core
+        tag: v2.25.0-aio-cpu
       env:
         - name: THREADS
           value: "4"
         - name: CONTEXT_SIZE
           value: "512"
         - name: MODELS_PATH
-          value: /models
+          value: "/models"
         - name: IMAGE_PATH
-          value: /tmp
+          value: "/tmp"
         - name: BUILD_TYPE
-          value: clblas
+          value: "clblas"
         - name: GO_TAGS
-          value: stablediffusion
+          value: "stablediffusion"
         - name: LLAMA_CLBLAST
           value: "1"
         - name: DEBUG
-          value: true
+          value: "true"
     lifecycle:
       postStart:
         exec:
