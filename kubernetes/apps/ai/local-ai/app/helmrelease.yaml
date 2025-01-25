@@ -67,7 +67,7 @@ spec:
         annotations: {}
         storageClass: ceph-block
         accessModes:
-          - ReadWriteMany
+          - ReadWriteOnce
         size: 50Gi
         globalMount: /models
 
