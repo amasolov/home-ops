@@ -32,9 +32,6 @@ spec:
       image:
         repository: quay.io/go-skynet/local-ai
         tag: v2.25.0-aio-cpu
-      env:
-        - name: "DEBUG"
-          value: true
     resources:
       requests:
         gpu.intel.com/i915: 1
