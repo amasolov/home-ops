@@ -8,11 +8,11 @@ metadata:
     app.kubernetes.io/name: &name local-ai
     app.kubernetes.io/instance: *name
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: ["ReadWriteMany"]
   storageClassName: ceph-block
   resources:
     requests:
-      storage: 100Gi
+      storage: 50Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,7 +23,7 @@ metadata:
     app.kubernetes.io/name: &name local-ai
     app.kubernetes.io/instance: *name
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: ["ReadWriteMany"]
   storageClassName: ceph-block
   resources:
     requests:
