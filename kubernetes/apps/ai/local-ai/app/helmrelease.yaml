@@ -5,7 +5,7 @@ kind: HelmRelease
 metadata:
   name: &app local-ai
 spec:
-  interval: 60m
+  interval: 30m
   chart:
     spec:
       # renovate: registryUrl=https://go-skynet.github.io/helm-charts/
