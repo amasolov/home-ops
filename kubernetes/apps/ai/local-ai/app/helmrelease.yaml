@@ -5,7 +5,7 @@ kind: HelmRelease
 metadata:
   name: &app local-ai
 spec:
-  interval: 30m
+  interval: 60m
   chart:
     spec:
       # renovate: registryUrl=https://go-skynet.github.io/helm-charts/
@@ -66,13 +66,17 @@ spec:
         enabled: true
         annotations: {}
         storageClass: ceph-block
-        accessModes: ["ReadWriteOnce"]
+        accessModes:
+          - ReadWriteMany
+        size: 50Gi
         globalMount: /models
 
       output:
         enabled: true
         annotations: {}
-        accessModes: ["ReadWriteOnce"]
+        accessModes:
+          - ReadWriteOnce
+        size: 10Gi
         storageClass: ceph-block
         globalMount: /tmp/generated
 
