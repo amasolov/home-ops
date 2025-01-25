@@ -31,7 +31,42 @@ spec:
     deployment:
       image:
         repository: quay.io/go-skynet/local-ai
-        tag: v2.25.0-aio-cpu
+        tag: v2.25.0-sycl-f16-ffmpeg
+      env:
+        - name: "THREADS"
+          value: 4
+        - name: "CONTEXT_SIZE"
+          value: 512
+        - name: "MODELS_PATH"
+          value: /models
+        - name: "IMAGE_PATH"
+          value: /tmp
+        - name: "BUILD_TYPE"
+          value: clblas
+        - name: "GO_TAGS"
+          value: stablediffusion
+        - name: "LLAMA_CLBLAST"
+          value: 1
+        - name: "DEBUG"
+          value: true
+    lifecycle:
+      postStart:
+        exec:
+          command:
+            - /bin/bash
+            - -c
+            - >
+              apt install libclblast-dev ocl-icd-libopencl1 -y &&
+              mkdir /tmp/neo &&
+              cd /tmp/neo &&
+              wget https://github.com/intel/intel-graphics-compiler/releases/download/v2.5.6/intel-igc-core-2_2.5.6+18417_amd64.deb &&
+              wget https://github.com/intel/intel-graphics-compiler/releases/download/v2.5.6/intel-igc-opencl-2_2.5.6+18417_amd64.deb &&
+              wget https://github.com/intel/compute-runtime/releases/download/24.52.32224.5/intel-level-zero-gpu-dbgsym_1.6.32224.5_amd64.ddeb &&
+              wget https://github.com/intel/compute-runtime/releases/download/24.52.32224.5/intel-level-zero-gpu_1.6.32224.5_amd64.deb &&
+              wget https://github.com/intel/compute-runtime/releases/download/24.52.32224.5/intel-opencl-icd-dbgsym_24.52.32224.5_amd64.ddeb &&
+              wget https://github.com/intel/compute-runtime/releases/download/24.52.32224.5/intel-opencl-icd_24.52.32224.5_amd64.deb &&
+              wget https://github.com/intel/compute-runtime/releases/download/24.52.32224.5/libigdgmm12_22.5.5_amd64.deb &&
+              dpkg -i *.deb
     resources:
       requests:
         gpu.intel.com/i915: 1
