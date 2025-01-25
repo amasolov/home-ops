@@ -7,7 +7,6 @@ metadata:
   labels:
     app.kubernetes.io/name: &name local-ai
     app.kubernetes.io/instance: *name
-    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes: ["ReadWriteOnce"]
   storageClassName: ceph-block
@@ -23,7 +22,6 @@ metadata:
   labels:
     app.kubernetes.io/name: &name local-ai
     app.kubernetes.io/instance: *name
-    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes: ["ReadWriteOnce"]
   storageClassName: ceph-block
