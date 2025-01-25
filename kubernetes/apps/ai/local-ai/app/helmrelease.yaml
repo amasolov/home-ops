@@ -33,18 +33,8 @@ spec:
         repository: quay.io/go-skynet/local-ai
         tag: v2.25.0-aio-cpu
       env:
-        - name: THREADS
-          value: "4"
-        - name: CONTEXT_SIZE
-          value: "512"
-        - name: MODELS_PATH
-          value: "/models"
-        - name: IMAGE_PATH
-          value: "/tmp"
-        - name: GO_TAGS
-          value: "stablediffusion"
-        - name: DEBUG
-          value: "true"
+        - name: debug
+          value: true
     resources:
       requests:
         gpu.intel.com/i915: 1
