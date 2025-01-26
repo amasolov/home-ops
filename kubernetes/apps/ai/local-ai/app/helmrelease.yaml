@@ -33,8 +33,9 @@ spec:
         repository: quay.io/go-skynet/local-ai
         tag: v2.25.0-aio-gpu-intel-f32
       env:
-        - name: debug
-          value: true
+        debug: true
+        threads: 4
+        context_size: 512
     lifecycle:
       postStart:
         exec:
