@@ -34,7 +34,7 @@ spec:
         tag: v2.25.0-aio-gpu-intel-f32
       env:
         - name: "DEBUG"
-          value: true
+          value: "true"
     lifecycle:
       postStart:
         exec:
