@@ -3,9 +3,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: llmstack
+  name: vllm-stack
   namespace: flux-system
 spec:
   interval: 30m
-  url: https://lmcache.github.io/helm/
+  url: https://vllm-project.github.io/production-stack
   timeout: 3m

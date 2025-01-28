@@ -34,6 +34,6 @@ resources:
   - ./actions-runner-controller.yaml
   - ./go-skynet.yaml
   - ./litellm.yaml
-  - ./llm-stack.yaml
+  - ./vllm-stack.yaml
 
 

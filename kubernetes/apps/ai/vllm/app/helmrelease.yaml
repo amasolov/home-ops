@@ -1,0 +1,42 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app vllm
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: vllm-stack
+      version: 0.0.2
+      sourceRef:
+        kind: HelmRepository
+        name: vllm-stack
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    servingEngineSpec:
+      modelSpec:
+        - name: "opt125m"
+          repository: "lmcache/vllm-openai"
+          tag: "latest"
+          modelURL: "facebook/opt-125m"
+
+          replicaCount: 1
+
+          requestCPU: 6
+          requestMemory: "16Gi"
+          requestGPU: 1
+
+          pvcStorage: "10Gi"
