@@ -39,4 +39,4 @@ spec:
           requestMemory: "8Gi"
           requestGPU: 0
 
-          pvcStorage: "10Gi"
+          pvcStorage: "12Gi"
