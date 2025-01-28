@@ -7,5 +7,5 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   # - ./local-ai/ks.yaml
-  - ./vllm/ks.yaml
+  # - ./vllm/ks.yaml
 
