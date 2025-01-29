@@ -29,7 +29,8 @@ spec:
     servingEngineSpec:
       modelSpec:
         - name: "opt125m"
-          repository: "lmcache/vllm-openai"
+          # repository: "lmcache/vllm-openai"
+          repository: "quay.io/rhn_support_amasolov/vllm-cpu-only"
           tag: "latest"
           modelURL: "facebook/opt-125m"
 
