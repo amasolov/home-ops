@@ -89,8 +89,3 @@ spec:
       enabled: true
       existingClaim: open-webui
 
-    containerSecurityContext:
-      runAsNonRoot: true
-      privileged: false
-      allowPrivilegeEscalation: false
-      readOnlyRootFilesystem: false
