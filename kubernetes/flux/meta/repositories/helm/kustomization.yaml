@@ -35,5 +35,7 @@ resources:
   - ./go-skynet.yaml
   - ./litellm.yaml
   - ./vllm-stack.yaml
+  - ./open-webui.yaml
+
 
 
