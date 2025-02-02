@@ -87,11 +87,7 @@ spec:
       existingSecret: ${SECRET_DOMAIN/./-}-production-tls
     persistence:
       enabled: true
-      # existingClaim: open-webui
-      size: 10Gi
-      accessModes:
-        - ReadWriteOnce
-      storageClass: ceph-block
+      existingClaim: open-webui
 
     containerSecurityContext:
       runAsUser: 1000
