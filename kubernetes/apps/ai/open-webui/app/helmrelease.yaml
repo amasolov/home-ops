@@ -47,6 +47,8 @@ spec:
     extraEnvVars:
       - name: ENABLE_OPENAI_API
         value: "true"
+      - name: OPENAI_API_KEY
+        value: "EMPTY"
       - name: OPENAI_API_BASE_URL
         value: "http://vllm-router-service.ai.svc.cluster.local/v1"
       - name: DATABASE_URL
