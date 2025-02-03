@@ -37,7 +37,6 @@ spec:
       resources: {}
     ollama:
       enabled: false
-    ollamaUrls: ["http://vllm-router-service.ai.svc.cluster.local:80"]
     pipelines:
       enabled: true
       persistence:
@@ -46,8 +45,12 @@ spec:
       enabled: true
 
     extraEnvVars:
-      # - name: ENABLE_LOGIN_FORM
-      #   value: "false"
+      - name: ENABLE_OPENAI_API
+        value: "true"
+      - name: OPENAI_API_BASE_URL
+        value: "http://vllm-router-service.ai.svc.cluster.local/v1"
+
+
       # - name: OAUTH_PROVIDER_NAME
       #   value: authentik
       # - name: ENABLE_OAUTH_SIGNUP
