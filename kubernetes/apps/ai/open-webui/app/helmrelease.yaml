@@ -37,7 +37,7 @@ spec:
       resources: {}
     ollama:
       enabled: false
-    ollamaUrls: ["http://vllm.ai.svc.cluster.local:80"]
+    ollamaUrls: ["http://vllm-router-service.ai.svc.cluster.local:80"]
     pipelines:
       enabled: true
       persistence:
