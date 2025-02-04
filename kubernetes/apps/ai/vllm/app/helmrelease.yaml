@@ -41,4 +41,4 @@ spec:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
           env:
             - name: VLLM_RPC_TIMEOUT
-              value: 1800000
+              value: "1800000"
