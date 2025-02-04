@@ -43,14 +43,15 @@ spec:
         existingClaim: open-webui-pipelines
     tika:
       enabled: true
-
     extraEnvVars:
       - name: ENABLE_OPENAI_API
         value: "true"
       - name: OPENAI_API_KEY
-        value: "EMPTY"
+        value: "token-abc123"
       - name: OPENAI_API_BASE_URL
         value: "http://vllm-router-service.ai.svc.cluster.local/v1"
+      - name: ENABLE_OLLAMA_API
+        value: "false"
       - name: DATABASE_URL
         valueFrom:
           secretKeyRef:
@@ -81,11 +82,6 @@ spec:
           secretKeyRef:
             name: open-webui-secret
             key: WEBUI_SECRET_KEY
-      # - name: OPENAI_API_KEY
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: *app
-      #       key: OPENAI_API_KEY
     ingress:
       enabled: true
       class: internal
