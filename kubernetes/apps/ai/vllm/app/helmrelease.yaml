@@ -34,8 +34,8 @@ spec:
           tag: "latest"
           modelURL: "facebook/opt-125m"
           replicaCount: 1
-          requestCPU: 2
-          requestMemory: "8Gi"
+          requestCPU: 3
+          requestMemory: "16Gi"
           requestGPU: 0
           pvcStorage: "12Gi"
           vllmConfig:
