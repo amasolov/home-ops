@@ -5,11 +5,10 @@ metadata:
   name: open-webui-pipelines
   namespace: ai
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: ["ReadWriteMany"]
   resources:
     requests:
       storage: 10Gi
-  storageClassName: ceph-block
 
 ---
 apiVersion: v1
@@ -18,9 +17,8 @@ metadata:
   name: open-webui
   namespace: ai
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: ["ReadWriteMany"]
   resources:
     requests:
       storage: 10Gi
-  storageClassName: ceph-block
 
