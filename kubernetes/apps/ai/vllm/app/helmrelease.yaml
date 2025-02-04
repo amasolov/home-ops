@@ -39,4 +39,4 @@ spec:
           requestGPU: 0
           pvcStorage: "12Gi"
           vllmConfig:
-            extraArgs: ["--api-key",  "token-abc123"]
+            extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
