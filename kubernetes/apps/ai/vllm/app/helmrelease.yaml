@@ -39,3 +39,6 @@ spec:
           pvcStorage: "10Gi"
           vllmConfig:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
+          env:
+            - name: VLLM_RPC_TIMEOUT
+              value: 1800000
