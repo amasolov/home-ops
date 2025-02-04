@@ -45,13 +45,13 @@ spec:
       enabled: true
     extraEnvVars:
       - name: ENABLE_OPENAI_API
-        value: "true"
+        value: true
       - name: OPENAI_API_KEY
         value: "token-abc123"
       - name: OPENAI_API_BASE_URL
         value: "http://vllm-engine-service.ai.svc.cluster.local/v1"
       - name: ENABLE_OLLAMA_API
-        value: "false"
+        value: false
       - name: DATABASE_URL
         valueFrom:
           secretKeyRef:
