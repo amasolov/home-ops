@@ -49,7 +49,7 @@ spec:
       - name: OPENAI_API_KEY
         value: "token-abc123"
       - name: OPENAI_API_BASE_URL
-        value: "http://vllm-router-service.ai.svc.cluster.local/v1"
+        value: "http://vllm-engine-service.ai.svc.cluster.local/v1"
       - name: ENABLE_OLLAMA_API
         value: "false"
       - name: DATABASE_URL
