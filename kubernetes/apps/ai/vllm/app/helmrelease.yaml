@@ -16,7 +16,6 @@ spec:
         namespace: flux-system
   maxHistory: 3
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -37,6 +36,6 @@ spec:
           requestCPU: 3
           requestMemory: "16Gi"
           requestGPU: 0
-          pvcStorage: "12Gi"
+          pvcStorage: "10Gi"
           vllmConfig:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
