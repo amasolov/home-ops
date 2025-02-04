@@ -32,7 +32,7 @@ spec:
           # repository: "lmcache/vllm-openai"
           repository: "quay.io/rhn_support_amasolov/vllm-cpu-only"
           tag: "latest"
-          modelURL: "TinyLlama/TinyLlama_v1.1"
+          modelURL: "facebook/opt-125m"
           replicaCount: 1
           requestCPU: 2
           requestMemory: "8Gi"
