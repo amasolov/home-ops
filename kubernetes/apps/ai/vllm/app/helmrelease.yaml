@@ -25,6 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    routerSpec:
+      replicaCount: 0
     servingEngineSpec:
       modelSpec:
         - name: "opt125m"
@@ -37,8 +39,12 @@ spec:
           requestMemory: "16Gi"
           requestGPU: 0
           pvcStorage: "10Gi"
+
           vllmConfig:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
+            enableChunkedPrefill: true
+            enablePrefixCaching: true
+
           env:
             - name: VLLM_RPC_TIMEOUT
               value: "1800000"
