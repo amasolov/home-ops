@@ -26,7 +26,7 @@ spec:
     keepHistory: false
   values:
     routerSpec:
-      replicaCount: 0
+      enableRouter: false
     servingEngineSpec:
       modelSpec:
         - name: "opt125m"
@@ -44,6 +44,7 @@ spec:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
             enableChunkedPrefill: true
             enablePrefixCaching: true
+            dtype: "bfloat16"
 
           env:
             - name: VLLM_RPC_TIMEOUT
