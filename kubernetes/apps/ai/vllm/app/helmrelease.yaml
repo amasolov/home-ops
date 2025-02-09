@@ -49,3 +49,6 @@ spec:
           env:
             - name: VLLM_RPC_TIMEOUT
               value: "1800000"
+            - name: VLLM_USE_V1
+              value: "1"
+
