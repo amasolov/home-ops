@@ -35,16 +35,16 @@ spec:
           # repository: "lmcache/vllm-openai"
           repository: "quay.io/rhn_support_amasolov/vllm-cpu-only"
           tag: "latest"
-          modelURL: "facebook/opt-125m"
+          modelURL: "meta-llama/Llama-3.1-8B-Instruct"
           replicaCount: 1
           requestCPU: 3
           requestMemory: "16Gi"
           requestGPU: 0
-          pvcStorage: "10Gi"
+          pvcStorage: "50Gi"
           vllmConfig:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
-            enableChunkedPrefill: true
-            enablePrefixCaching: true
+            enableChunkedPrefill: false
+            enablePrefixCaching: false
 
           env:
             - name: VLLM_RPC_TIMEOUT
