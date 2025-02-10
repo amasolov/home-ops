@@ -49,5 +49,9 @@ spec:
           env:
             - name: VLLM_RPC_TIMEOUT
               value: "1800000"
-
+            - name: HF_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: vllm-secret
+                  key: HF_TOKEN
 
