@@ -29,6 +29,7 @@ spec:
       enableRouter: false
       replicaCount: 0
     servingEngineSpec:
+      runtimeClassName: ""
       modelSpec:
         - name: "opt125m"
           # repository: "lmcache/vllm-openai"
@@ -40,7 +41,6 @@ spec:
           requestMemory: "16Gi"
           requestGPU: 0
           pvcStorage: "10Gi"
-          runtimeClassName: ""
           vllmConfig:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
             enableChunkedPrefill: true
