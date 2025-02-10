@@ -27,6 +27,7 @@ spec:
   values:
     routerSpec:
       enableRouter: false
+      replicaCount: 0
     servingEngineSpec:
       modelSpec:
         - name: "opt125m"
