@@ -9,7 +9,7 @@ spec:
   targetNamespace: ai
   dependsOn:
     - name: volsync
-    - name: external-secrets-stores  
+    - name: external-secrets-stores
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
