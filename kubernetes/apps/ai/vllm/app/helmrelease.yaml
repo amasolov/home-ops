@@ -31,7 +31,7 @@ spec:
     servingEngineSpec:
       runtimeClassName: ""
       modelSpec:
-        - name: "opt125m"
+        - name: "llama-31-8b"
           # repository: "lmcache/vllm-openai"
           repository: "quay.io/rhn_support_amasolov/vllm-cpu-only"
           tag: "latest"
