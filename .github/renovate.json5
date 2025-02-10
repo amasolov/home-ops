@@ -40,14 +40,14 @@
       "automerge": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["digest"],
-      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p"]
+      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p", "ghcr.io/angelnu/cni-plugins"]
     },
     {
       "description": ["Auto-merge container updates for non essential software"],
       "automerge": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["minor", "patch"],
-      "matchPackagePatterns": ["grafana", "intel-device-plugins", "scrypted", "paperless-ngx", "kubanetics", "external-dns", "cloudflared", "cni-plugins", "dragonfly", "coredns"]
+      "matchPackagePatterns": ["grafana", "intel-device-plugins", "scrypted", "paperless-ngx", "kubanetics", "external-dns", "cloudflared", "cni-plugins", "dragonfly", "coredns", "emqx-operator", "app-template", "open-webui", "external-secrets", "cert-manager", "cilium", "redis", "zitadel", "home-assistant", "vllm-stack", "loki", "netbox"]
     },
     {
       "description": ["Auto-merge GitHub Actions for minor and patch"],
@@ -231,7 +231,7 @@
       "description": ["Process YAML custom dependencies"],
       "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)",
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     },
