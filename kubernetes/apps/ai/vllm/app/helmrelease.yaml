@@ -45,7 +45,6 @@ spec:
             extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
             enableChunkedPrefill: false
             enablePrefixCaching: false
-            dtype: "bfloat8"
             maxModelLen: 16384
           env:
             - name: VLLM_RPC_TIMEOUT
