@@ -42,7 +42,7 @@ spec:
           requestGPU: 0
           pvcStorage: "50Gi"
           vllmConfig:
-            extraArgs: ["--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
+            extraArgs: ["--max-model-len", "4096", "--api-key",  "token-abc123", "--chat-template",  "./examples/template_chatml.jinja"]
             enableChunkedPrefill: false
             enablePrefixCaching: false
 
