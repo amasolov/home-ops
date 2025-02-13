@@ -31,13 +31,13 @@ spec:
     servingEngineSpec:
       runtimeClassName: ""
       modelSpec:
-        - name: "llama-31-8b"
+        - name: "nm-llama-31-8b"
           # repository: "lmcache/vllm-openai"
           repository: "quay.io/rhn_support_amasolov/vllm-cpu-only"
           tag: "latest"
-          modelURL: "meta-llama/Llama-3.1-8B-Instruct"
+          modelURL: "neuralmagic/Meta-Llama-3.1-8B-Instruct-FP8"
           replicaCount: 1
-          requestCPU: 3
+          requestCPU: 2
           requestMemory: "16Gi"
           requestGPU: 0
           pvcStorage: "50Gi"
