@@ -75,6 +75,33 @@ spec:
                   secretKeyRef:
                     name: paperless-secret
                     key: PAPERLESS_ADMIN_PASSWORD
+              PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+              PAPERLESS_DISABLE_REGULAR_LOGIN: false
+              PAPERLESS_REDIRECT_LOGIN_TO_SSO: true
+              SECRET_PAPERLESS_NGX_OAUTH_CLIENT_SECRET:
+                valueFrom:
+                  secretKeyRef:
+                    name: paperless-secret
+                    key: PAPERLESS_OAUTH_CLIENT_SECRET
+              PAPERLESS_SOCIALACCOUNT_PROVIDERS: |
+                {
+                  "openid_connect": {
+                    "SCOPE": ["openid", "profile", "email"],
+                    "OAUTH_PKCE_ENABLED": true,
+                    "APPS": [
+                      {
+                        "provider_id": "zitadel",
+                        "name": "Zitadel",
+                        "client_id": "306647277202637416",
+                        "secret": "${SECRET_PAPERLESS_NGX_OAUTH_CLIENT_SECRET}",
+                        "settings": {
+                          "server_url": "https://sso.${SECRET_DOMAIN}",
+                          "token_auth_method": "client_secret_basic"
+                        }
+                      }
+                    ]
+                  }
+                }
             probes:
               liveness:
                 enabled: true
