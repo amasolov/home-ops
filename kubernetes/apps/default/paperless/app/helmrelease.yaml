@@ -95,7 +95,7 @@ spec:
                         "client_id": "306647277202637416",
                         "secret": "${SECRET_PAPERLESS_NGX_OAUTH_CLIENT_SECRET}",
                         "settings": {
-                          "server_url": "https://sso.${SECRET_DOMAIN}",
+                          "server_url": "https://sso.${SECRET_DOMAIN}/.well-known/openid-configuration",
                           "token_auth_method": "client_secret_basic"
                         }
                       }
