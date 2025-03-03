@@ -78,10 +78,11 @@ spec:
               PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
               PAPERLESS_DISABLE_REGULAR_LOGIN: false
               PAPERLESS_REDIRECT_LOGIN_TO_SSO: true
+              PAPERLESS_ACCOUNT_DEFAULT_GROUPS: "Users"
               PAPERLESS_SOCIALACCOUNT_PROVIDERS: |
                 {
                   "openid_connect": {
-                    "SCOPE": ["openid", "profile", "email"],
+                    "SCOPE": ["openid", "profile", "email", "groups"],
                     "OAUTH_PKCE_ENABLED": true,
                     "APPS": [
                       {
