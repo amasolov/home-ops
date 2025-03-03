@@ -90,9 +90,7 @@ spec:
                         "client_id": "306647277202637416",
                         "secret": "${SECRET_PAPERLESS_OAUTH_SECRET}",
                         "settings": {
-                          "server_url": "https://sso.${SECRET_DOMAIN}/.well-known/openid-configuration",
-                          "token_auth_method": "client_secret_basic"
-                        }
+                          "server_url": "https://sso.${SECRET_DOMAIN}/.well-known/openid-configuration"                        }
                       }
                     ]
                   }
