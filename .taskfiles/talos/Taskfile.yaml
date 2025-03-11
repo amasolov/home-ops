@@ -32,7 +32,7 @@ tasks:
   upgrade-node:
     desc: Upgrade Talos on a single node [HOSTNAME=required]
     cmds:
-      - talosctl --nodes {{.HOSTNAME}} upgrade --image="factory.talos.dev/installer{{if ne .TALOS_SECUREBOOT "false"}}-secureboot{{end}}/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee:{{.TALOS_VERSION}}" --timeout=10m
+      - talosctl --nodes {{.HOSTNAME}} upgrade --image="factory.talos.dev/installer/faccb83bc559c5ee33ec3232fee4852faf9720ae62ddd844067dce9d3561705b:{{.TALOS_VERSION}}" --timeout=10m
       - talosctl --nodes {{.HOSTNAME}} health --wait-timeout=10m --server=false
     vars:
       TALOS_SCHEMATIC_ID:

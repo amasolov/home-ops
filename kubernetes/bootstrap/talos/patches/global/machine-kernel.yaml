@@ -2,3 +2,6 @@ machine:
     install:
         extraKernelArgs:
             - net.ifnames=0
+    systemExtensions:
+        officialExtensions:
+            - siderolabs/i915
