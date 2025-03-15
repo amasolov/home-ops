@@ -38,7 +38,6 @@ spec:
       companion:
         annotations:
           reloader.stakater.com/auto: "true"
-          lbipam.cilium.io/ips: "192.168.8.103"
         containers:
           app:
             image:
@@ -66,6 +65,8 @@ spec:
     service:
       app:
         controller: companion
+        annotations:
+          lbipam.cilium.io/ips: "192.168.8.103"
         ports:
           http:
             port: 8000
