@@ -18,7 +18,8 @@ resources:
   - ./homepage/ks.yaml
   - ./zitadel/ks.yaml
   - ./paperless/ks.yaml
-
+  - ./companion/ks.yaml
+  
 
 
 
