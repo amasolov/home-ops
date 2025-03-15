@@ -27,6 +27,13 @@ spec:
       namespace: rook-ceph
 
   values:
+    defaultPodOptions:
+      enableServiceLinks: true
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
     controllers:
       companion:
         annotations:
