@@ -37,13 +37,13 @@ spec:
       optional: true
     - kind: Secret
       name: awx-secret
-      valuesKey: awx_database_password
-      targetPath: AWX.postgres.password
+      valuesKey: awx_sslmode
+      targetPath: AWX.postgres.sslmode
       optional: true
     - kind: Secret
       name: awx-secret
-      valuesKey: awx_sslmode
-      targetPath: AWX.postgres.sslmode
+      valuesKey: awx_database_password
+      targetPath: AWX.postgres.password
       optional: true
     - kind: Secret
       name: awx-secret
