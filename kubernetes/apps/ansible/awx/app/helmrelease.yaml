@@ -14,42 +14,6 @@ spec:
         kind: HelmRepository
         name: awx-charts
         namespace: flux-system
-  valuesFrom:
-    - kind: Secret
-      name: awx-secret
-      valuesKey: awx_database_host
-      targetPath: AWX.postgres.host
-      optional: true
-    - kind: Secret
-      name: awx-secret
-      valuesKey: awx_database_port
-      targetPath: AWX.postgres.port
-      optional: true
-    - kind: Secret
-      name: awx-secret
-      valuesKey: awx_database_name
-      targetPath: AWX.postgres.dbName
-      optional: true
-    - kind: Secret
-      name: awx-secret
-      valuesKey: awx_database_username
-      targetPath: AWX.postgres.username
-      optional: true
-    - kind: Secret
-      name: awx-secret
-      valuesKey: awx_sslmode
-      targetPath: AWX.postgres.sslmode
-      optional: true
-    - kind: Secret
-      name: awx-secret
-      valuesKey: awx_database_password
-      targetPath: AWX.postgres.password
-      optional: true
-    - kind: Secret
-      name: awx-secret
-      valuesKey: awx_type
-      targetPath: AWX.postgres.type
-      optional: true
   install:
     remediation:
       retries: 3
@@ -69,10 +33,16 @@ spec:
         ingress_annotations: |
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
         ingress_class_name: internal
+        ingress_hosts:
+          - hostname: awx.${SECRET_DOMAIN}
+        hostname: awx.${SECRET_DOMAIN}
+        garbage_collect_secrets: true
+        no_log: false
         projects_persistence: true
         projects_existing_claim: awx-projects-claim
         projects_storage_class: ceph-block
         projects_storage_size: 20Gi
+        postgres_configuration_secret: awx-secret
 
       postgres:
         enabled: false
