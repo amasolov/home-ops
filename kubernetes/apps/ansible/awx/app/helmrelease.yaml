@@ -67,3 +67,8 @@ spec:
       postgres:
         enabled: false
       controller: {}
+      customVolumes:
+        projects:
+          enabled: true
+          size: 10Gi
+          storageClassName: ceph-block
