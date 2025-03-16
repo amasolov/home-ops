@@ -61,6 +61,7 @@ spec:
   values:
     AWX:
       name: awx
+      enabled: true
       spec:
         admin_user: admin
       postgres:
