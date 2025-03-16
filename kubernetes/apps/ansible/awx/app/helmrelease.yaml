@@ -1,0 +1,68 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: awx
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: awx-operator
+      version: 2.19.1
+      sourceRef:
+        kind: HelmRepository
+        name: awx-charts
+        namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: awx-secret
+      valuesKey: awx_database_host
+      targetPath: AWX.postgres.host
+      optional: true
+    - kind: Secret
+      name: awx-secret
+      valuesKey: awx_database_port
+      targetPath: AWX.postgres.port
+      optional: true
+    - kind: Secret
+      name: awx-secret
+      valuesKey: awx_database_name
+      targetPath: AWX.postgres.dbName
+      optional: true
+    - kind: Secret
+      name: awx-secret
+      valuesKey: awx_database_username
+      targetPath: AWX.postgres.username
+      optional: true
+    - kind: Secret
+      name: awx-secret
+      valuesKey: awx_database_password
+      targetPath: AWX.postgres.password
+      optional: true
+    - kind: Secret
+      name: awx-secret
+      valuesKey: awx_sslmode
+      targetPath: AWX.postgres.sslmode
+      optional: true
+    - kind: Secret
+      name: awx-secret
+      valuesKey: awx_type
+      targetPath: AWX.postgres.type
+      optional: true
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    AWX:
+      name: awx
+      spec:
+        admin_user: admin
+      postgres:
+        enabled: false
+      controller: {}

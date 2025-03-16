@@ -36,6 +36,8 @@ resources:
   - ./litellm.yaml
   - ./vllm-stack.yaml
   - ./open-webui.yaml
+  - ./awx-charts.yaml
+
 
 
 
