@@ -60,15 +60,20 @@ spec:
       retries: 3
   values:
     AWX:
-      name: awx-ktmb1
+      name: awx
       enabled: true
       spec:
         admin_user: admin
         ingress_type: ingress
         service_type: ClusterIP
-        ingress_annotations:
+        ingress_annotations: |
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
         ingress_class_name: internal
+        projects_persistence: true
+        projects_existing_claim: awx-projects-claim
+        projects_storage_class: ceph-block
+        projects_storage_size: 20Gi
+
       postgres:
         enabled: false
       controller: {}
@@ -76,7 +81,3 @@ spec:
       customVolumes:
         postgres:
           enabled: false
-        projects:
-          enabled: true
-          size: 10Gi
-          storageClassName: ceph-block
