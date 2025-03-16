@@ -5,7 +5,7 @@ kind: HelmRelease
 metadata:
   name: awx
 spec:
-  interval: 1h
+  interval: 30m
   chart:
     spec:
       chart: awx-operator
