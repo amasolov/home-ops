@@ -69,7 +69,6 @@ spec:
         ingress_annotations:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
         ingress_class_name: internal
-        ingress_hosts: "awx.ktmb1.net"
       postgres:
         enabled: false
       controller: {}
