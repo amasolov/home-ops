@@ -60,13 +60,23 @@ spec:
       retries: 3
   values:
     AWX:
-      name: awx
+      name: awx-ktmb1
+      enabled: true
       spec:
         admin_user: admin
+        ingress_type: ingress
+        service_type: ClusterIP
+        ingress_annotations:
+          external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
+        ingress_class_name: internal
+        ingress_hosts: "awx.ktmb1.net"
       postgres:
         enabled: false
       controller: {}
+      customSecrets.admin.enabled: true
       customVolumes:
+        postgres:
+          enabled: false
         projects:
           enabled: true
           size: 10Gi
