@@ -215,7 +215,7 @@ spec:
           mountPath: /opt/netbox/netbox/netbox/custom_pipeline.py
 
     extraInitContainers:
-      - image: ghcr.io/onedr0p/postgres-init:16
+      - image: ghcr.io/home-operations/postgres-init:16
         name: init-db
         securityContext:
           runAsUser: 999

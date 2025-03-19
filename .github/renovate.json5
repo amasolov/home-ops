@@ -40,7 +40,7 @@
       "automerge": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["digest"],
-      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p", "ghcr.io/angelnu/cni-plugins"]
+      "matchPackagePatterns": ["ghcr.io/bjw-s", "ghcr.io/onedr0p", "ghcr.io/home-operations",  "ghcr.io/angelnu/cni-plugins"]
     },
     {
       "description": ["Auto-merge container updates for non essential software"],
