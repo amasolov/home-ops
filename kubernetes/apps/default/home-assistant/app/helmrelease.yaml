@@ -58,13 +58,13 @@ spec:
                 cpu: 10m
               limits:
                 memory: 4Gi
-          matter-server:
-            envFrom:
-              - secretRef:
-                  name: home-assistant-secret
-            image:
-              repository: ghcr.io/home-assistant-libs/python-matter-server
-              tag: 7.0.1
+          # matter-server:
+          #   envFrom:
+          #     - secretRef:
+          #         name: home-assistant-secret
+          #   image:
+          #     repository: ghcr.io/home-assistant-libs/python-matter-server
+          #     tag: 7.0.1
           code-server:
             envFrom:
               - secretRef:
