@@ -1,0 +1,95 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app evcc
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      evcc:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/home-operations/home-assistant
+              tag: 2025.3.3@sha256:6a0f0a8f7eaebaf4751ddc0e90c4b931121adf4ac6f4e869d648d4cb996b7f70
+            env:
+              TZ: Australia/Sydney
+            envFrom:
+              - secretRef:
+                  name: home-assistant-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+                memory: 500M
+              limits:
+                memory: 1000M
+    service:
+      app:
+        controller: evcc
+        ports:
+          http:
+            port: &port 7070
+          tcp8887:
+            enabled: true
+            port: 8887
+          udp7090:
+            enabled: true
+            port: 7090
+            protocol: UDP
+          udp9522:
+            enabled: true
+            port: 9522
+            protocol: UDP
+
+    ingress:
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
+        hosts:
+          - host: evcc.ktmb1.net
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+
+    persistence:
+      config-file:
+        type: secret
+        name: evcc-config
+        globalMounts:
+          - path: /etc/evcc.yaml
+            subPath: evcc.yaml
+
+      config:
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          evcc:
+            app:
+              - path: /root/.evcc

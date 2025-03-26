@@ -19,7 +19,8 @@ resources:
   - ./zitadel/ks.yaml
   - ./paperless/ks.yaml
   - ./companion/ks.yaml
-  
+  - ./evcc/ks.yaml
+
 
 
 
