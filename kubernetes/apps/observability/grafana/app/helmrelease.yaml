@@ -25,6 +25,11 @@ spec:
       valuesKey: teslamate_dbpass
       targetPath: env.teslamate_dbpass
       optional: false
+    - kind: Secret
+      name: grafana-secret
+      valuesKey: homeassistant_dbpass
+      targetPath: env.homeassistant_dbpass
+      optional: false
   install:
     remediation:
       retries: 3
