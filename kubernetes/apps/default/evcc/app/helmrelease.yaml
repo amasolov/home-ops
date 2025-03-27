@@ -30,8 +30,8 @@ spec:
         containers:
          app:
             image:
-              repository: ghcr.io/ahinko/evcc
-              tag: 0.202.0
+              repository: docker.io/evcc/evcc
+              tag: 0.202.1
 
             probes:
               liveness:
