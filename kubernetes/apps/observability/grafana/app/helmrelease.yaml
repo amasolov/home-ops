@@ -92,6 +92,7 @@ spec:
           - { name: Loki, orgId: 1 }
           - { name: Prometheus, orgId: 1 }
           - { name: TeslaMate, orgId: 1 }
+          - { name: HomeAssistant, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
@@ -129,6 +130,21 @@ spec:
               timescaledb: true
             version: 1
             editable: true
+          - name: HomeAssistant
+            type: postgres
+            url: "postgres16-rw.database.svc.cluster.local:5432"
+            user: "postgres"
+            isDefault: false
+            secureJsonData:
+              password: $homeassistant_dbpass
+            jsonData:
+              database: "homeassistant_timescale"
+              postgresVersion: 1600
+              sslmode: disable
+              timescaledb: true
+            version: 1
+            editable: true
+
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
