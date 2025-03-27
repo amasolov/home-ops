@@ -28,4 +28,5 @@ spec:
       GATUS_SUBDOMAIN: conduwuit
       VOLSYNC_CAPACITY: 15Gi
       VOLSYNC_CLAIM: conduwuit
-
+      APP_UID: "1000"
+      APP_GID: "100"
