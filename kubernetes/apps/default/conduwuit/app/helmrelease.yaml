@@ -102,7 +102,7 @@ spec:
             targetPort: 8080
 
     ingress:
-      app:
+      main:
         className: internal
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
@@ -113,7 +113,7 @@ spec:
               - path: /.well-known/matrix
                 pathType: Prefix
                 service:
-                  identifier: app
+                  identifier: main
                   port: 8080
           - host: matrix.ktmb1.net
             paths:
