@@ -1,0 +1,137 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: conduwuit
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  values:
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: ${APP_UID}
+        runAsGroup: ${APP_GID}
+        fsGroup: ${APP_GID}
+        fsGroupChangePolicy: OnRootMismatch
+    controllers:
+      conduwuit:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+                repository: ghcr.io/girlbossceo/conduwuit
+                tag: main-7bf92c8a3710eeff229bd86bc81a89daa94b66d5-debug
+            env:
+              - name: CONDUWUIT_SERVER_NAME
+                value: "ktmb1.net"
+              - name: TOKIO_WORKER_THREADS
+                value: "5"
+              - name: CONDUWUIT_ROCKSDB_PARALLELISM_THREADS
+                value: "4"
+              - name: CONDUWUIT_DATABASE_PATH
+                value: "/data/db"
+              - name: CONDUWUIT_ADDRESS
+                value: "0.0.0.0"
+              - name: CONDUWUIT_PORT
+                value: "8080"
+              - name: RUST_LOG
+                value: "info"
+              - name: CONDUWUIT_ALLOW_FEDERATION
+                value: "true"
+              - name: CONDUWUIT_ALLOW_REGISTRATION
+                value: "true"
+              - name: CONDUWUIT_WELL_KNOWN__CLIENT
+                value: "https://matrix.ktmb1.net"
+              - name: CONDUWUIT_WELL_KNOWN__SERVER
+                value: "matrix.ktmb1.net:443"
+              - name: CONDUWUIT_MAX_REQUEST_SIZE
+                value: "104857600"
+              - name: CONDUWUIT_IP_LOOKUP_STRATEGY
+                value: "5"
+            envFrom:
+              - secretRef:
+                  name: conduwuit
+            resources:
+              requests:
+                memory: 512Mi
+              limits:
+                memory: 1Gi
+            probes:
+              liveness: &probes
+                enabled: false
+                custom: true
+                spec:
+                  httpGet:
+                    path: /_matrix/federation/v1/version
+                    port: http
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+
+    service:
+      main:
+        controller: conduwuit
+        ports:
+          http:
+            port: 80
+            protocol: TCP
+            targetPort: 8080
+
+    ingress:
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.ktmb1.net
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          - host: ktmb1.net
+            paths:
+              - path: /.well-known/matrix
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: 8080
+          - host: matrix.ktmb1.net
+            paths:
+              - path: /_matrix
+                pathType: Prefix
+                service:
+                  identifier: main
+                  port: 8080
+              - path: /_conduwuit/
+                pathType: Prefix
+                service:
+                  identifier: main
+                  port: 8080
+
+    persistence:
+      data:
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          conduwuit:
+            app:
+              - path: /data
