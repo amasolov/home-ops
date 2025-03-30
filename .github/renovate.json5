@@ -47,7 +47,7 @@
       "automerge": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["minor", "patch"],
-      "matchPackagePatterns": ["grafana", "intel-device-plugins", "scrypted", "paperless-ngx", "kubanetics", "external-dns", "cloudflared", "cni-plugins", "dragonfly", "coredns", "emqx-operator", "app-template", "open-webui", "external-secrets", "cert-manager", "cilium", "redis", "zitadel", "home-assistant", "vllm-stack", "loki", "netbox", "dragonfly", "volsync", "node-red", "code-server", "gatus", "openebs", "emqx", "pgadmin4"]
+      "matchPackagePatterns": ["grafana", "intel-device-plugins", "scrypted", "paperless-ngx", "kubanetics", "external-dns", "cloudflared", "cni-plugins", "dragonfly", "coredns", "emqx-operator", "app-template", "open-webui", "external-secrets", "cert-manager", "cilium", "redis", "zitadel", "home-assistant", "vllm-stack", "loki", "netbox", "dragonfly", "volsync", "node-red", "code-server", "gatus", "openebs", "emqx", "pgadmin4", "homepage", "kube-prometheus-stack", "uv", "cloudflare-python", "esphome", "actions-runner", "k8s-sidecar", "spegel", "ingress-nginx", "snapshot-controller", "teslamate"]
     },
     {
       "description": ["Auto-merge GitHub Actions for minor and patch"],
