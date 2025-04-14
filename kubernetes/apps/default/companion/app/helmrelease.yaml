@@ -42,7 +42,7 @@ spec:
           app:
             image:
               repository: ghcr.io/bitfocus/companion/companion
-              tag: 4.0.0-7914-main-437b6b5b
+              tag: 4.0.0-7926-main-2786dcdb
             probes:
               liveness:
                 enabled: true
