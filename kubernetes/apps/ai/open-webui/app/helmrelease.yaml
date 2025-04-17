@@ -92,5 +92,5 @@ spec:
       existingSecret: ${SECRET_DOMAIN/./-}-production-tls
     persistence:
       enabled: true
-      existingClaim: open-webui
+      existingClaim: "${VOLSYNC_CLAIM}"
 
