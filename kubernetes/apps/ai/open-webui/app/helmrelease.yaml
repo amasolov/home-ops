@@ -25,8 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: vllm
-      namespace: ai
+    # - name: vllm
+    #   namespace: ai
     - name: volsync
       namespace: volsync-system
 
