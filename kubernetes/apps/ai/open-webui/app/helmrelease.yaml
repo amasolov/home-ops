@@ -25,11 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    # - name: vllm
-    #   namespace: ai
     - name: volsync
       namespace: volsync-system
-
   values:
     annotations:
       reloader.stakater.com/auto: "true"
@@ -53,33 +50,11 @@ spec:
           secretKeyRef:
             name: open-webui-secret
             key: OPENAI_API_KEY
-      # - name: ENABLE_OLLAMA_API
-      #   value: false
       - name: DATABASE_URL
         valueFrom:
           secretKeyRef:
             name: open-webui-secret
             key: DATABASE_URL
-
-      # - name: OAUTH_PROVIDER_NAME
-      #   value: authentik
-      # - name: ENABLE_OAUTH_SIGNUP
-      #   value: "true"
-      # - name: OPENID_PROVIDER_URL
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: *app
-      #       key: OPENID_PROVIDER_URL
-      # - name: OAUTH_CLIENT_ID
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: *app
-      #       key: OAUTH_CLIENT_ID
-      # - name: OAUTH_CLIENT_SECRET
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: *app
-      #       key: OAUTH_CLIENT_SECRET
       - name: WEBUI_SECRET_KEY
         valueFrom:
           secretKeyRef:
