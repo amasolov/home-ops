@@ -31,7 +31,7 @@ spec:
          app:
             image:
               repository: docker.io/evcc/evcc
-              tag: 0.203.4
+              tag: 0.203.6
 
             probes:
               liveness:
