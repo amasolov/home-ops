@@ -118,7 +118,8 @@ spec:
     shortTimeFormat: "H:i:s"
     dateTimeFormat: "j. F, Y g:i a"
     shortDateTimeFormat: "j.m.Y H:i"
-    storages: storages.backends.s3boto3.S3Boto3Storage
+    storages:
+      - storages.backends.s3boto3.S3Boto3Storage
     existingSecret: netbox-secret
     metricsEnabled: true
     postgresql:
