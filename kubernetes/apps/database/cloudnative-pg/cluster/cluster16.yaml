@@ -5,7 +5,7 @@ kind: Cluster
 metadata:
   name: postgres16
 spec:
-  imageName: ghcr.io/clevyr/cloudnativepg-timescale:16.8-10
+  imageName: ghcr.io/clevyr/cloudnativepg-timescale:16.9-4
   instances: 3
   primaryUpdateStrategy: unsupervised
   storage:
