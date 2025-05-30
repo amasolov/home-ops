@@ -5,11 +5,11 @@ kind: HelmRelease
 metadata:
   name: cloudnative-pg
 spec:
-  interval: 30m
+  interval: 60m
   chart:
     spec:
       chart: cloudnative-pg
-      version: 0.23.2
+      version: 0.24.0
       sourceRef:
         kind: HelmRepository
         name: cloudnative-pg
