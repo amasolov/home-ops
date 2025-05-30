@@ -22,6 +22,8 @@ resources:
   - ./evcc/ks.yaml
   - ./conduwuit/ks.yaml
   - ./grocy/ks.yaml
+  - ./diyhue/ks.yaml
+
 
 
 
