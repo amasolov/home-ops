@@ -6,7 +6,7 @@ metadata:
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
-  interval: 30m
+  interval: 60m
   chart:
     spec:
       chart: zitadel
