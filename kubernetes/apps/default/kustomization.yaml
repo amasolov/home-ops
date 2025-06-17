@@ -8,17 +8,17 @@ resources:
   # Flux-Kustomizations
   # - ./redis/ks.yaml
   - ./netbox/ks.yaml
-  - ./home-assistant/ks.yaml
+  # - ./home-assistant/ks.yaml
   - ./smtp-relay/ks.yaml
   - ./pgadmin/ks.yaml
-  - ./node-red/ks.yaml
-  - ./atuin/ks.yaml
+  # - ./node-red/ks.yaml
+  # - ./atuin/ks.yaml
   # - ./scrypted/ks.yaml
   # - ./esphome/ks.yaml
-  - ./homepage/ks.yaml
+  #- ./homepage/ks.yaml
   - ./zitadel/ks.yaml
   - ./paperless/ks.yaml
-  - ./companion/ks.yaml
+  # - ./companion/ks.yaml
   # - ./evcc/ks.yaml
   # - ./conduwuit/ks.yaml
   # - ./grocy/ks.yaml
